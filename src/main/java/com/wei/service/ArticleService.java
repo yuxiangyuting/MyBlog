@@ -19,4 +19,10 @@ public interface ArticleService extends IService<Article> {
      */
     List<Article> findAll();
 
+    /**
+     *通过id查询文章
+     * @param artId 文章id
+     * @return 文章对象
+     */
+    Article selectByArtId(Integer artId);
 }

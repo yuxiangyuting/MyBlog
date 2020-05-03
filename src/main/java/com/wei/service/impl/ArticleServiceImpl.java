@@ -25,4 +25,9 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleDao, Article> impleme
     public List<Article> findAll() {
         return getBaseMapper().findAll();
     }
+
+    @Override
+    public Article selectByArtId(Integer artId) {
+        return getBaseMapper().selectById(artId);
+    }
 }

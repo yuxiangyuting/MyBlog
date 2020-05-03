@@ -17,13 +17,13 @@ import java.util.List;
  */
 @CrossOrigin
 @RestController
-@RequestMapping("essay")
+@RequestMapping("Article")
 public class ArticleController extends ApiController {
     /**
      * 服务对象
      */
     @Resource
-    private ArticleService essayService;
+    private ArticleService articleService;
 
     /**
      * 查询所有文章内容 根据时间排序
@@ -31,7 +31,12 @@ public class ArticleController extends ApiController {
      */
     @GetMapping
     public List<Article> findAll(){
-        return essayService.findAll();
+        return articleService.findAll();
+    }
+
+    @RequestMapping("selectByArtId")
+    public Article selectByArtId(Integer artId) {
+        return articleService.selectByArtId(artId);
     }
 
 }
