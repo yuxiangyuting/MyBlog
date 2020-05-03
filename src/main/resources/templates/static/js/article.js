@@ -1,5 +1,5 @@
 //加载代码高亮js
-loadscript("/templates/jpress-perfree-simple/static/plugin/highlight/highlight.pack.js",function () {
+loadscript("/templates/jpress-perfree-simplestatic/plugin/highlight/highlight.pack.js",function () {
     hljs.initHighlighting();
 });
 //加载js
@@ -22,7 +22,7 @@ function loadscript(url, callback){
     document.getElementsByTagName("head")[0].appendChild(script);
 }
 layui.config({
-    base: '/templates/jpress-perfree-simple/static/plugin/layuinotice/'
+    base: '/templates/jpress-perfree-simplestatic/plugin/layuinotice/'
 });
 layui.use(['element','layedit','form','layer','jquery'], function() {
     var element = layui.element,layedit = layui.layedit,form=layui.form,layer=layui.layer,$=layui.jquery;
@@ -123,7 +123,7 @@ layui.use(['element','layedit','form','layer','jquery'], function() {
                     $(".captcha").val("");
                     $(".comment-verify").attr("src",'/commons/captcha?d='+Math.random());
                     if (data.errorCode == 9) {
-                        location.href = '/user/login';
+                        location.href = 'login.html';
                     }
                 }
                 return false;

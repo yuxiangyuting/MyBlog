@@ -1,0 +1,53 @@
+.pc {
+  /*background: url("../img/pcbanner.png");*/
+}
+.ph {
+  background: url("../images/libai.png");
+  background-size: cover;
+}
+header {
+  height: 160px;
+}
+
+.login-pc {
+  height: 580px;
+  background: url("../images/libai.png") no-repeat;
+  background-size: 100%;
+  padding-top: 9%;
+  text-align: center;
+}
+.login-ph {
+  height: 580px;
+  background: url("../img/libai-ph-form.png") no-repeat;
+  background-size: 100%;
+  padding-top: 3%;
+  text-align: center;
+}
+#login label {
+  font-size: 18px;
+}
+
+.login-pc input {
+  height: 30px;
+  border: none;
+  border-bottom: 3px dashed #ff000d;
+  margin-top: 20px;
+  width: 80%;
+}
+.login-ph input {
+  height: 30px;
+  border: none;
+  border-bottom: 3px dashed #ff000d;
+  margin-top: 20px;
+  width: 80%;
+}
+
+.login-pc form {
+  margin: 0 0 0 45%;
+}
+.login-ph form {
+  margin: 0 0 0 0;
+}
+#login h1 {
+  margin-bottom: 30px;
+}

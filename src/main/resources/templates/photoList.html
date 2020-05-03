@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ZH-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="aaa" />
+    <meta name="template" content="Perfree-Simple-Pro" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <meta name="author" content="" />
+    <title>相册</title>
+    <link
+      rel="icon"
+      type="image/ico"
+      href="/attachment/20190430/ec83d6ed69d84517beb3ee9ccc49f8b4.jpg"
+    />
+    <link
+      rel="stylesheet"
+      href="static/plugins/layui/css/layui.css"
+      media="all"
+    />
+    <link rel="stylesheet" href="static/css/perfree.min.css" media="all" />
+    <link
+      rel="stylesheet"
+      href="static/plugins/font-awesome/css/font-awesome.min.css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      href="static/plugins/skplayer/skPlayer.min.css"
+      media="all"
+    />
+    <link rel="dns-prefetch" href="//cdn.bootcss.com" />
+    <link
+      rel="stylesheet"
+      href="static/plugins/highlight/styles/vs.css"
+      media="all"
+    />
+    <script
+      type="text/javascript"
+      src="static/plugins/jquery/jquery-3.2.1.min.js"
+    ></script>
+  </head>
+  <body>
+        <div class="p-container-box">
+          <div class="p-content-box layui-anim layui-anim-upbit">
+            <div class="p-content-box-lwlhitokoto">
+              <h1>相册</h1>
+            </div>
+            <div class="p-photoList-box layui-clear">
+              <a class="p-photo-box p-shadow pjax" href="/photo/6">
+                <div class="p-photoList-img-box">
+                  <img
+                    src="/attachment/20190423/d625b89499504c60aeac8fa996545b8a.jpg"
+                    alt=""
+                    class="p-photoList-thumb"
+                  />
+                </div>
+                <div class="p-photoList-title-box">
+                  <span class="p-photoList-desc">旅游散心</span>
+                </div>
+                <span class="p-hover-bg"
+                  ><i class="layui-icon" style="font-size: 30px;"></i></span
+                >
+              </a>
+              <a class="p-photo-box p-shadow pjax" href="/photo/5">
+                <div class="p-photoList-img-box">
+                  <img
+                    src="/attachment/20190423/67e3c8edff2348868e19369d2d2f647e.jpg"
+                    alt=""
+                    class="p-photoList-thumb"
+                  />
+                </div>
+                <div class="p-photoList-title-box">
+                  <span class="p-photoList-desc">杂七杂八</span>
+                </div>
+                <span class="p-hover-bg"
+                  ><i class="layui-icon" style="font-size: 30px;"></i></span
+                >
+              </a>
+              <a class="p-photo-box p-shadow pjax" href="/photo/4">
+                <div class="p-photoList-img-box">
+                  <img
+                    src="/attachment/20190423/d625b89499504c60aeac8fa996545b8a.jpg"
+                    alt=""
+                    class="p-photoList-thumb"
+                  />
+                </div>
+                <div class="p-photoList-title-box">
+                  <span class="p-photoList-desc">那时你我</span>
+                </div>
+                <span class="p-hover-bg"
+                  ><i class="layui-icon" style="font-size: 30px;"></i></span
+                >
+              </a>
+              <a class="p-photo-box p-shadow pjax" href="/photo/3">
+                <div class="p-photoList-img-box">
+                  <img
+                    src="/attachment/20190423/9f49b15643374d5b9013e05dc524be04.jpg"
+                    alt=""
+                    class="p-photoList-thumb"
+                  />
+                </div>
+                <div class="p-photoList-title-box">
+                  <span class="p-photoList-desc"
+                    ><i class="layui-icon" style="font-size: 15px;"></i>
+                    四月你好</span
+                  >
+                </div>
+                <span class="p-hover-bg p-enc-bg"
+                  ><i class="layui-icon" style="font-size: 20px;"></i>
+                  相册已加密</span
+                >
+              </a>
+              <a class="p-photo-box p-shadow pjax" href="/photo/2">
+                <div class="p-photoList-img-box">
+                  <img
+                    src="/attachment/20190423/cb743a7f974341fea544ebf4906e8d11.jpg"
+                    alt=""
+                    class="p-photoList-thumb"
+                  />
+                </div>
+                <div class="p-photoList-title-box">
+                  <span class="p-photoList-desc"
+                    ><i class="layui-icon" style="font-size: 15px;"></i>
+                    记录点点滴滴</span
+                  >
+                </div>
+                <span class="p-hover-bg p-enc-bg"
+                  ><i class="layui-icon" style="font-size: 20px;"></i>
+                  相册已加密</span
+                >
+              </a>
+              <a class="p-photo-box p-shadow pjax" href="/photo/1">
+                <div class="p-photoList-img-box">
+                  <img
+                    src="/attachment/20190423/cbe75eea92684312a2a4989e9faf5d3e.jpg"
+                    alt=""
+                    class="p-photoList-thumb"
+                  />
+                </div>
+                <div class="p-photoList-title-box">
+                  <span class="p-photoList-desc">时光不老,我们不散</span>
+                </div>
+                <span class="p-hover-bg"
+                  ><i class="layui-icon" style="font-size: 30px;"></i></span
+                >
+              </a>
+            </div>
+            <script>
+              $(".p-photoList-box").on(
+                "mouseenter",
+                ".p-photo-box",
+                function () {
+                  $(this).children(".p-hover-bg").show();
+                }
+              );
+              $(".p-photoList-box").on(
+                "mouseleave",
+                ".p-photo-box",
+                function () {
+                  $(this).children(".p-hover-bg").hide();
+                }
+              );
+            </script>
+          </div>
+  </body>
+</html>

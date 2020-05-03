@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ZH-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="Perfree-Simple-Pro" />
+    <meta
+      name="description"
+      content="一款高仿Typecho的handsome博客主题 主题简介 抛弃一切繁琐,只想简简单单的呈现你的文采,如你所见,这是一款简约清新的博客主题模板,该模板收费69元,包含相册插件和留言板插件(开发中)以及"
+    />
+    <meta name="template" content="Perfree-Simple-Pro" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <meta name="author" content="" />
+    <title>文章标题</title>
+        <link
+      rel="icon"
+      type="image/ico"
+      href="/attachment/20190430/ec83d6ed69d84517beb3ee9ccc49f8b4.jpg"
+    />
+    <link
+      rel="stylesheet"
+      href="static/plugins/layui/css/layui.css"
+      media="all"
+    />
+    <link rel="stylesheet" href="static/css/perfree.min.css" media="all" />
+    <link
+      rel="stylesheet"
+      href="static/plugins/font-awesome/css/font-awesome.min.css"
+      media="all"
+    />
+    <link rel="stylesheet" href="editor/css/editormd.preview.css" />
+    <script
+      type="text/javascript"
+      src="static/plugins/jquery/jquery-3.2.1.min.js"
+    ></script>
+    <script src="editor/editormd.js"></script>
+    <script src="editor/lib/marked.min.js"></script>
+    <script src="editor/lib/prettify.min.js"></script>
+  </head>
+  <body>
+    <div class="p-container-box">
+    <div class="p-content-box layui-anim layui-anim-upbit">
+      <div class="p-content-box-lwlhitokoto">
+        <h2>文章标题</h2>
+        <span><i class="fa fa-user-o" aria-hidden="true"></i> perfree</span>
+        <span><i class="fa fa-clock-o" aria-hidden="true"></i> 2019-06-03</span>
+        <span><i class="fa fa-eye" aria-hidden="true"></i> 2921浏览</span>
+        <span><i class="fa fa-comment-o" aria-hidden="true"></i> 34条评论</span>
+      </div>
+      <div class="p-article-share-box layui-clear">
+        <div class="p-share-left">
+          <a class="p-index-link pjax" href="/"
+            ><i class="fa fa-home fa-fw"></i> 首页</a
+          >/
+          <span class="p-active-link">正文</span>
+        </div>
+        <div class="p-share-right">
+                <span>分享到:</span>
+                <a
+                  class="qq"
+                  onclick="shareToqq(event, '/attachment/20190603/429ac173b205465ba3e3a1410bd38e88.jpg')"
+                  title="分享到QQ"
+                  ><i class="fa fa-qq" aria-hidden="true"></i
+                ></a>
+                /
+                <a
+                  onclick="shareToQzone(event,'/attachment/20190603/429ac173b205465ba3e3a1410bd38e88.jpg')"
+                  title="分享到qq空间"
+                  ><img
+                    src="static/images/qzone.png"
+                    width="16px"
+                    height="16px"
+                /></a>
+                /
+                <a
+                  class="weibo"
+                  onclick="shareToSinaWB(event,'/attachment/20190603/429ac173b205465ba3e3a1410bd38e88.jpg')"
+                  title="分享到微博"
+                  ><i class="fa fa-weibo" aria-hidden="true"></i
+                ></a>
+                /
+                <a
+                  href="https://www.facebook.com/sharer.php?title=Perfree-Simple-Pro-致更好的你&amp;u=https://www.jpress.yinpengfei.com/article/9"
+                  target="_blank"
+                  title="分享到facebook"
+                  ><i class="fa fa-facebook" aria-hidden="true"></i
+                ></a>
+                /
+                <a
+                  href="https://twitter.com/share?text=Perfree-Simple-Pro-致更好的你&amp;url=https://www.jpress.yinpengfei.com/article/9"
+                  target="_blank"
+                  title="分享到Twitter"
+                  ><i class="fa fa-twitter" aria-hidden="true"></i
+                ></a>
+              </div>
+            </div>
+            <span id="edit-model" style="display: none;">markdown</span>
+            <div
+              class="p-article-img"
+              style="
+                background-image: url('/attachment/20190603/429ac173b205465ba3e3a1410bd38e88.jpg');
+              "
+            ></div>
+            <article class="p-article-content-box" id="article">
+              <div id="articleContent"></div>
+            </article>
+            <div class="p-article-goto-box layui-clear">
+              <a
+                href="/article/7"
+                class="p-pre-article pjax"
+                articletitle="谁又不曾孤独呢-孤独患者"
+                id="preArticle"
+              >
+                上一篇
+              </a>
+              <a
+                href="/article/10"
+                articletitle="推荐一款分布式文件服务器"
+                class="p-next-article pjax"
+                id="nextArticle"
+              >
+                下一篇
+              </a>
+            </div>
+            <div class="p-article-comment-box">
+              <h2>发表评论</h2>
+              <form
+                class="layui-form"
+                action="/article/postComment"
+                id="commentForm"
+                method="post"
+              >
+                <input
+                  type="hidden"
+                  name="articleId"
+                  value="9"
+                  id="articleId"
+                />
+                <input type="hidden" name="revertPid" id="revertPid" />
+                <textarea
+                  id="revert"
+                  style="display: none;"
+                  name="content"
+                  lay-verify="content"
+                ></textarea>
+                <div class="p-send-comment-box layui-clear">
+                  <span style="font-size: 14px;">说点什么吧~</span>
+                  <button
+                    class="layui-btn p-send-comment-btn revert-submit"
+                    lay-submit
+                    lay-filter="comment"
+                  >
+                    发表评论
+                  </button>
+                </div>
+              </form>
+            </div>
+            <h2 class="p-commoent-count">评论列表</h2>
+            <div class="p-article-comment-list-box" id="allComment">
+              <div class="p-article-revert-box">
+                <div class="p-article-revert-container layui-clear">
+                  <div class="p-revert-user layui-clear">
+                    <img
+                      src="static/images/user.jpeg"
+                      alt=""
+                      class="p-user-img"
+                    />
+                    <div class="p-article-revert-container-right">
+                      <span class="p-revert-user-name">匿名用户</span>
+                      <span class="p-revert-time">2020-04-28 18:26:01</span>
+                    </div>
+                  </div>
+                  <div class="p-revert-content">
+                    和
+                  </div>
+                  <a
+                    href="javascript:;"
+                    data-cid="96"
+                    data-author="匿名用户"
+                    class="p-revert-btn"
+                    >回复</a
+                  >
+                </div>
+              </div>
+              <div class="p-article-revert-box">
+                <div class="p-article-revert-container layui-clear">
+                  <div class="p-revert-user layui-clear">
+                    <img
+                      src="static/images/user.jpeg"
+                      alt=""
+                      class="p-user-img"
+                    />
+                    <div class="p-article-revert-container-right">
+                      <span class="p-revert-user-name">匿名用户</span>
+                      <span class="p-revert-time">2020-04-17 18:34:30</span>
+                    </div>
+                  </div>
+                  <div class="p-revert-content">
+                    sss
+                  </div>
+                  <a
+                    href="javascript:;"
+                    data-cid="93"
+                    data-author="匿名用户"
+                    class="p-revert-btn"
+                    >回复</a
+                  >
+                </div>
+              </div>
+              <div class="p-article-revert-box">
+                <div class="p-article-revert-container layui-clear">
+                  <div class="p-revert-user layui-clear">
+                    <img
+                      src="static/images/user.jpeg"
+                      alt=""
+                      class="p-user-img"
+                    />
+                    <div class="p-article-revert-container-right">
+                      <span class="p-revert-user-name">匿名用户</span>
+                      <span class="p-revert-time">2020-04-17 18:34:27</span>
+                    </div>
+                  </div>
+                  <div class="p-revert-content">
+                    xz
+                  </div>
+                  <a
+                    href="javascript:;"
+                    data-cid="92"
+                    data-author="匿名用户"
+                    class="p-revert-btn"
+                    >回复</a
+                  >
+                </div>
+              </div>
+              <div class="p-article-revert-box">
+                <div class="p-article-revert-container layui-clear">
+                  <div class="p-revert-user layui-clear">
+                    <img
+                      src="static/images/user.jpeg"
+                      alt=""
+                      class="p-user-img"
+                    />
+                    <div class="p-article-revert-container-right">
+                      <span class="p-revert-user-name">匿名用户</span>
+                      <span class="p-revert-time">2020-04-13 14:27:36</span>
+                    </div>
+                  </div>
+                  <div class="p-revert-content">
+                    nice
+                  </div>
+                  <a
+                    href="javascript:;"
+                    data-cid="91"
+                    data-author="匿名用户"
+                    class="p-revert-btn"
+                    >回复</a
+                  >
+                </div>
+              </div>
+              <div class="p-article-revert-box">
+                <div class="p-article-revert-container layui-clear">
+                  <div class="p-revert-user layui-clear">
+                    <img
+                      src="static/images/user.jpeg"
+                      alt=""
+                      class="p-user-img"
+                    />
+                    <div class="p-article-revert-container-right">
+                      <span class="p-revert-user-name">匿名用户</span>
+                      <span class="p-revert-time">2020-04-05 12:33:17</span>
+                    </div>
+                  </div>
+                  <div class="p-revert-content">
+                    好看
+                  </div>
+                  <a
+                    href="javascript:;"
+                    data-cid="90"
+                    data-author="匿名用户"
+                    class="p-revert-btn"
+                    >回复</a
+                  >
+                </div>
+              </div>
+              <div class="perfree-page-box layui-clear">
+                <a class="page-item previous disabled pjax" href="javascript:;"
+                  >上一页</a
+                >
+                <a class="page-item active pjax" href="javascript:;">1</a>
+                <a class="page-item pjax" href="/article/9-2#allComment">2</a>
+                <a class="page-item pjax" href="/article/9-3#allComment">3</a>
+                <a class="page-item pjax" href="/article/9-4#allComment">4</a>
+                <a class="page-item pjax" href="/article/9-5#allComment">5</a>
+                <a class="page-item pjax" href="/article/9-6#allComment">6</a>
+                <a class="page-item pjax" href="/article/9-7#allComment">7</a>
+                <a class="page-item next pjax" href="/article/9-2#allComment"
+                  >下一页</a
+                >
+              </div>
+            </div>
+          </div>
+    <script type="text/javascript" src="static/plugins/layui/layui.js"></script>
+    <script type="text/javascript" src="static/js/article.js"></script>
+    <script src="static/js/index.js"></script>
+  </body>
+</html>
