@@ -52,9 +52,5 @@ public class UserController extends ApiController {
         return this.userService.regsitered(username,password);
     }
 
-    @PostMapping("searchUserByUserName")
-    public User searchUserByUserName(String username) {
-        return userService.searchUserByUserName(username);
-    }
 
 }
