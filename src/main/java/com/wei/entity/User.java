@@ -2,13 +2,13 @@ package com.wei.entity;
 
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
 
 /**
  * (User)表实体类
@@ -23,10 +23,12 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class User extends Model<User> {
     //主键
-    private Integer id;
+    @TableId
+    private Integer uid;
     //用户名
     private String username;
     //密码
+    @TableField
     private String password;
     //注册时间
     private Date joindate;
@@ -38,4 +40,6 @@ public class User extends Model<User> {
     private String signature;
     //手机号
     private String phonenumber;
+    //头像
+    private String tximg;
 }

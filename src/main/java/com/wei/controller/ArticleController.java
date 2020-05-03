@@ -17,7 +17,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("essay")
-public class EssayController extends ApiController {
+public class ArticleController extends ApiController {
     /**
      * 服务对象
      */
