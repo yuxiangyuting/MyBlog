@@ -1,5 +1,6 @@
 package com.wei.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -22,24 +23,61 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @SuppressWarnings("serial")
 public class User extends Model<User> {
-    //主键
+
+    /**
+     * 主键
+     */
     @TableId
     private Integer uid;
-    //用户名
+
+    /**
+     * 用户名
+     */
     private String username;
-    //密码
-    @TableField
+
+    /**
+     * 密码
+     */
+    @TableField(exist = false)
     private String password;
-    //注册时间
+
+    /**
+     * 注册时间
+     */
     private Date joindate;
-    //昵称
+
+    /**
+     * 昵称
+     */
     private String nickname;
-    //邮箱
+
+    /**
+     * 邮箱
+     */
     private String eamil;
-    //个性签名
+
+    /**
+     * 个性签名
+     */
     private String signature;
-    //手机号
+
+    /**
+     * 手机号
+     */
     private String phonenumber;
-    //头像
+
+    /**
+     *头像
+     */
     private String tximg;
+
+    /**
+     * 获取主键值
+     *
+     * @return 主键值
+     */
+    @Override
+    protected Serializable pkVal() {
+        return this.uid;
+    }
 }
