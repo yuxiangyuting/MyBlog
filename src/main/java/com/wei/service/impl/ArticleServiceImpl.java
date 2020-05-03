@@ -1,5 +1,6 @@
 package com.wei.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wei.dao.ArticleDao;
 import com.wei.entity.Article;
@@ -28,6 +29,8 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleDao, Article> impleme
 
     @Override
     public Article selectByArtId(Integer artId) {
-        return getBaseMapper().selectById(artId);
+        QueryWrapper<Article> wrapper=new QueryWrapper<> ();
+        wrapper.eq("artId", artId);
+        return getBaseMapper().selectOne(wrapper);
     }
 }
