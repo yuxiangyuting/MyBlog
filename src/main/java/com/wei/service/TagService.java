@@ -11,4 +11,10 @@ import com.wei.entity.Tag;
  */
 public interface TagService extends IService<Tag> {
 
+    /**
+     * 通过id查找标签
+     * @param tag 标签信息
+     * @return 布尔
+     */
+    boolean insert(Tag tag);
 }

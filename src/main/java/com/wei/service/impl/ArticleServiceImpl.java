@@ -20,6 +20,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleDao, Article> impleme
 
     /**
      * 查询所有文章内容 根据时间排序
+     *
      * @return 所有文章
      */
     @Override
@@ -27,10 +28,29 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleDao, Article> impleme
         return getBaseMapper().findAll();
     }
 
+    /**
+     * 通过id查询文章
+     *
+     * @param artId 文章id
+     * @return 文章对象
+     */
     @Override
     public Article selectByArtId(Integer artId) {
-        QueryWrapper<Article> wrapper=new QueryWrapper<> ();
+        QueryWrapper<Article> wrapper = new QueryWrapper<>();
         wrapper.eq("artId", artId);
         return getBaseMapper().selectOne(wrapper);
+    }
+
+    /**
+     * 查找该uid的所有文章
+     *
+     * @param uid 用户id
+     * @return 文章集合
+     */
+    @Override
+    public List<Article> selectArticleByUid(Integer uid) {
+        QueryWrapper<Article> wrapper = new QueryWrapper<>();
+        wrapper.eq("uid", uid);
+        return getBaseMapper().selectList(wrapper);
     }
 }

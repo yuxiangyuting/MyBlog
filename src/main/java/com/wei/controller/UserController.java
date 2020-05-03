@@ -2,11 +2,13 @@ package com.wei.controller;
 
 
 import com.baomidou.mybatisplus.extension.api.ApiController;
+import com.wei.entity.Tag;
 import com.wei.entity.User;
 import com.wei.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * (User)表控制层
@@ -30,7 +32,7 @@ public class UserController extends ApiController {
      *
      * @param username 用户名
      * @param password 密码
-     * @return
+     * @return 用户信息
      */
     @PostMapping("login")
     public User login(String username, String password) {
@@ -42,7 +44,7 @@ public class UserController extends ApiController {
      *
      * @param username 用户名
      * @param password 密码
-     * @return
+     * @return 布尔
      */
     @PostMapping("regsitered")
     public boolean regsitered(String username, String password) {
@@ -55,9 +57,9 @@ public class UserController extends ApiController {
      * @param uid 用户名
      * @return 用户信息
      */
-    @PostMapping("searchUserByUserName")
-    public User searchUserByUserName(Integer uid) {
-        return userService.searchUserByUserName(uid);
+    @PostMapping("searchUserByUid")
+    public User searchUserByUid(Integer uid) {
+        return userService.searchUserByUid(uid);
     }
 
 }
