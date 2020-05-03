@@ -1,70 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Document</title>
-    <link rel="stylesheet" href="static/css/login.css">
-    <link rel="stylesheet" href="static/plugins/layui/css/layui.css"/>
-    <script src="static/plugins/layui/layui.js"></script>
-    <script src="static/js/vue.js"></script>
-</head>
-<header></header>
-<div class="layui-row">
-    <div id="login" class="login-pc layui-col-md6 layui-col-md-offset3">
-        <form action="">
-            <h1>用户登录</h1>
-
-            <div class="layui-form-item">
-                <label class="layui-form-label">账号</label>
-
-                <div class="layui-input-block">
-                    <input type="text" class="layui-input"/>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">密码</label>
-
-                <div class="layui-input-block">
-                    <input type="password" class="layui-input" />
-                </div>
-            </div>
-            <div class="layui-form-item" style="text-align: center">
-                <button class="layui-btn layui-btn-primary" style="width: 40%">登录</button>
-            </div>
-        </form>
-    </div>
-    <script> layui.use(['layer', 'form'], function () {
-        var layer = layui.layer,
-                form = layui.form;
-        var $ = layui.$;
-        var options = {
-            // url: "http://localhost:8080/articleMuch/selectArticleMuchByAtitle",
-            // data: {"atitle": "Jsp数据库交互之Cookie"},
-            method: "get",
-            dataType: "json",
-            success: function (data) {
-
-            }
-        };
-        var size = window.innerWidth;
-        listenerScreen(size);
-        $.ajax(options);
-        $(window).resize(function () {
-            var size = window.innerWidth;
-            listenerScreen(size);
-        });
-
-        function listenerScreen(size) {
-            if (size > 1000) {
-                $("#login").addClass("login-pc").removeClass("login-ph");
-                $("body").addClass("pc").removeClass("ph");
-            } else {
-                $("#login").removeClass("login-pc").addClass("login-ph");
-                $("body").addClass("ph").removeClass("pc");
-            }
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>登录到用户中心</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="static/components/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/components/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="static/adminlte/css/AdminLTE.min.css">
+    <!--[if lt IE 9]>
+    <![endif]-->
+    <style>
+        .login-page {
+            background-image: url("static/commons/img/loginbg.png");
+            background-size: cover;
         }
-    });
-    </script>
+
+        .login-box {
+            padding-top: 100px;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+
+    </style>
+</head>
+<body class="hold-transition login-page">
+<div class="row">
+    <div class="login-box text-center">
+        <div class="login-box-body">
+            <form action="/user/doLogin" method="post" class="autoAjaxSubmit" data-ok-href="/">
+                <div class="form-group">
+                    <label>账号</label>
+                    <input type="text" class="form-control" placeholder="请输入账号或邮箱" name="user">
+                </div>
+                <div class="form-group">
+                    <label>密码</label>
+                    <input type="password" class="form-control" placeholder="及密码..." name="pwd">
+                </div>
+                <div class="row">
+                    <div class="col-xs-12" style="padding-top: 15px">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">登 录</button>
+                        <p class="help-block" style="float: left;"> 还没有账号？点击 <a href="/user/register">这里</a> 注册。 </p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="static/components/jquery/jquery.min.js"></script>
+<script src="static/components/jquery/jquery.form.min.js"></script>
+<script src="static/components/bootstrap/js/bootstrap.min.js"></script>
+<script src="static/commons/jpresscommons.js"></script>
 </body>
 </html>
