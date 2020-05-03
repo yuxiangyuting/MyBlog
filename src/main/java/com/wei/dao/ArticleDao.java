@@ -18,6 +18,6 @@ public interface ArticleDao extends BaseMapper<Article> {
      * 查询所有文章内容 根据时间排序
      * @return 所有文章
      */
-    @Select("select * from article order by issuedate desc")
+    @Select("select * from article order by pushDate desc")
     List<Article> findAll();
 }

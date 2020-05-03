@@ -11,7 +11,7 @@ import java.util.List;
  * @author makejava
  * @since 2020-05-02 12:46:41
  */
-public interface EssayService extends IService<Article> {
+public interface ArticleService extends IService<Article> {
 
     /**
      * 查询所有文章内容 根据时间排序

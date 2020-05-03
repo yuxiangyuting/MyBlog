@@ -1,6 +1,5 @@
 package com.wei.entity;
 
-import java.util.Date;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,45 +9,37 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * (Article)表实体类
+ * 评论(Topic)表实体类
  *
  * @author makejava
- * @since 2020-05-03 19:55:23
+ * @since 2020-05-03 19:56:41
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @SuppressWarnings("serial")
-public class Article extends Model<Article> {
+public class Topic extends Model<Topic> {
     /**
-    *文章id
+    *评论id
     */
-    private Integer artid;
+    private Integer tid;
     /**
     *用户id
     */
     private Integer uid;
     /**
-    *封面图片
-    */
-    private String image;
-    /**
-    *标题
-    */
-    private String title;
-    /**
-    *内容
+    *评论内容
     */
     private String content;
     /**
-    *发布时间
+    *点赞数
     */
-    private Date pushDate;
+    private Integer like;
     /**
-    *浏览量
+    *被评论的文章id
     */
-    private Integer pageView;
+    private Integer artid;
 
 
     /**
@@ -58,6 +49,6 @@ public class Article extends Model<Article> {
      */
     @Override
     protected Serializable pkVal() {
-        return this.artid;
+        return this.tid;
     }
     }

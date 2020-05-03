@@ -29,8 +29,8 @@ public interface UserService extends IService<User> {
 
     /**
      * 通过用户名查询用户信息
-     * @param username 用户名
+     * @param uid 用户id
      * @return 用户信息
      */
-    User searchUserByUserName(String username);
+    User searchUserByUserName(Integer uid);
 }
