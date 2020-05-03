@@ -38,7 +38,7 @@ public class User extends Model<User> {
     /**
      * 密码
      */
-    @TableField(exist = false)
+    @TableField(select = false)
     private String password;
 
     /**
