@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ZH-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="aaa" />
+    <meta name="template" content="Perfree-Simple-Pro" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+    />
+    <meta name="author" content="" />
+    <title>时间轴</title>
+    <link
+      rel="stylesheet"
+      href="static/plugins/layui/css/layui.css"
+      media="all"
+    />
+    <link rel="stylesheet" href="static/css/perfree.min.css" media="all" />
+    <link
+      rel="stylesheet"
+      href="static/plugins/font-awesome/css/font-awesome.min.css"
+      media="all"
+    />
+    <script
+      type="text/javascript"
+      src="static/plugins/jquery/jquery-3.2.1.min.js"
+    ></script>
+  </head>
+  <body>
+    <div class="p-container-box">
+      <div class="p-content-box layui-anim layui-anim-upbit">
+        <div class="p-content-box-lwlhitokoto">
+          <h3>文章归档</h3>
+          <span>目前共发布了9篇文章,继续努力~</span>
+        </div>
+        <div class="p-article-timeline-box">
+          <ul class="layui-timeline" id="timelineBox"></ul>
+        </div>
+        <div id="timeLinePage" style="text-align: center;"></div>
+      </div>
+    </div>
+    <div class="p-layout-right-btn">
+      <a class="go-top"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
+    </div>
+    <script
+      type="text/javascript"
+      src="static/plugins/layui/lay/modules/layer.js"
+    ></script>
+    <script type="text/javascript" src="static/plugins/layui/layui.js"></script>
+
+      <script>
+        var articles = [];
+        ("");
+        ("");
+        var article = {
+          title: "测试数学公式",
+          url: "/article/1360",
+          created: "09月12日",
+        };
+        articles.push(article);
+        ("");
+        var article = {
+          title: "Python数学计算/解方程/求导",
+          url: "/article/1359",
+          created: "08月13日",
+        };
+        articles.push(article);
+        ("");
+        ("");
+        layui.use("laypage", function () {
+          var laypage = layui.laypage;
+          //执行一个laypage实例
+          laypage.render({
+            elem: "timeLinePage",
+            count: articles.length,
+            theme: "#337ab7",
+            jump: function (obj, first) {
+              var timeIndex = layer.load();
+              $("#timelineBox").html("");
+              var html = "";
+              var start = 0;
+              if (obj.curr > 1) {
+                start = (obj.curr - 1) * 10;
+              }
+              for (var i = start; i < articles.length; i++) {
+                if (i <= start + 9) {
+                  var articleHtml =
+                    '<li class="layui-timeline-item">' +
+                    '<i class="layui-icon layui-timeline-axis">&#xe63f;</i>' +
+                    '<div class="layui-timeline-content layui-text">' +
+                    '<h3 class="layui-timeline-title">' +
+                    articles[i].created +
+                    "</h3>" +
+                    '<span class="time-box-top"><i class="fa fa-caret-up"></i></span>' +
+                    '<a href="' +
+                    articles[i].url +
+                    '" title="' +
+                    articles[i].title +
+                    '" class="pjax">' +
+                    articles[i].title +
+                    "</a>" +
+                    "</div>" +
+                    "</li>";
+                  html += articleHtml;
+                }
+              }
+              $("#timelineBox").append(html);
+              $("html,body").animate(
+                { scrollTop: $(".p-content-box").offset().top },
+                300
+              );
+              layer.close(timeIndex);
+              //首次不执行
+              if (!first) {
+                //do something
+              }
+            }
+          });
+        });
+      </script>
+    </div>
+  </body>
+</html>
