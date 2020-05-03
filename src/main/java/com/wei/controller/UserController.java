@@ -1,7 +1,6 @@
 package com.wei.controller;
 
 
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.api.R;
@@ -32,25 +31,37 @@ public class UserController extends ApiController {
 
     /**
      * 登录方法
+     *
      * @param username 用户名
      * @param password 密码
      * @return
      */
     @PostMapping("login")
-    public User login(String username,String password){
-        return this.userService.login(username,password);
+    public User login(String username, String password) {
+        return this.userService.login(username, password);
     }
 
     /**
      * 注册
+     *
      * @param username 用户名
      * @param password 密码
      * @return
      */
     @PostMapping("regsitered")
-    public boolean regsitered(String username,String password){
-        return this.userService.regsitered(username,password);
+    public boolean regsitered(String username, String password) {
+        return this.userService.regsitered(username, password);
     }
 
+    /**
+     * 通过用户名查询用户信息
+     *
+     * @param username 用户名
+     * @return 用户信息
+     */
+    @PostMapping("searchUserByUserName")
+    public User searchUserByUserName(String username) {
+        return userService.searchUserByUserName(username);
+    }
 
 }
