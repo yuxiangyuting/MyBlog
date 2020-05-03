@@ -43,13 +43,13 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
 
     /**
      * 通过用户名查询用户信息
-     * @param username 用户名
+     * @param uid 用户id
      * @return 用户信息
      */
     @Override
-    public User searchUserByUserName(String username) {
+    public User searchUserByUserName(Integer uid) {
         QueryWrapper<User> wrapper=new QueryWrapper<>();
-        wrapper.eq("username", username);
+        wrapper.eq("uid", uid);
         return getBaseMapper().selectOne(wrapper);
     }
 }
