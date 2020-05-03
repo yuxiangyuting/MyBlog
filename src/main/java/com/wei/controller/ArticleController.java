@@ -32,4 +32,5 @@ public class ArticleController extends ApiController {
     public List<Article> findAll(){
         return essayService.findAll();
     }
+
 }
