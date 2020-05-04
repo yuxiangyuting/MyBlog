@@ -22,7 +22,7 @@ public interface UsertagDao extends BaseMapper<Usertag> {
      * @param uid 作者id
      * @return 标签集合
      */
-    @Select("select u.uTid,u.uid,t.tagId,t.tagName,count(a.tagId) count from userTag u join tag t on t.tagId=u.tagId join article a on a.tagId=u.tagId where u.uid=1 group by u.tagId")
+    @Select("select u.uTid,u.uid,t.tagId,t.tagName,count(a.tagId) count from userTag u join tag t on t.tagId=u.tagId join article a on a.tagId=u.tagId where u.uid=#{uid} group by u.tagId")
     List<UsertagVo> selectTagsByUid(Integer uid);
 
 }

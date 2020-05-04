@@ -1,6 +1,4 @@
-package com.wei.entity;
-
-import java.util.Date;
+package com.wei.entity.vo;
 
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.AllArgsConstructor;
@@ -9,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * (Article)表实体类
@@ -21,7 +20,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuppressWarnings("serial")
-public class Article extends Model<Article> {
+public class ArticleVo extends Model<ArticleVo> {
     /**
      * 文章id
      */
