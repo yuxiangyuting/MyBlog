@@ -3,6 +3,7 @@ package com.wei.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.wei.entity.Tag;
 import com.wei.entity.Usertag;
+import com.wei.entity.vo.UsertagVo;
 
 import java.util.List;
 
@@ -20,5 +21,5 @@ public interface UsertagService extends IService<Usertag> {
      * @param uid 作者id
      * @return 标签集合
      */
-    List<Tag> selectTagByUid(Integer uid);
+    List<UsertagVo> selectTagByUid(Integer uid);
 }
