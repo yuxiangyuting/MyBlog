@@ -17,7 +17,7 @@ import java.util.List;
  */
 @CrossOrigin
 @RestController
-@RequestMapping("Article")
+@RequestMapping("article")
 public class ArticleController extends ApiController {
     /**
      * 服务对象
