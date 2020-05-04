@@ -137,6 +137,8 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleDao, Article> impleme
         try {
             FileOutputStream fos = new FileOutputStream(file, false);
             fos.write(acontent.getBytes("UTF-8"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
