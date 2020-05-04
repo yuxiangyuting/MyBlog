@@ -25,4 +25,11 @@ public interface ArticleService extends IService<Article> {
      * @return 文章对象
      */
     Article selectByArtId(Integer artId);
+
+    /**
+     * 查找该uid的所有文章
+     * @param uid 用户id
+     * @return 文章集合
+     */
+    List<Article> selectArticleByUid(Integer uid);
 }

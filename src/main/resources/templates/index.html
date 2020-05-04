@@ -39,6 +39,14 @@
     ></script>
 </head>
 <body id="body">
+<script>
+    $(function () {
+        const pageSrc2 = sessionStorage.getItem("pageSrc");
+        if (pageSrc2 !== null) {
+            $("iframe").attr("src", pageSrc2)
+        }
+    })
+</script>
 <div style="display: none;" id="hitokoto"></div>
 <div class="p-box">
     <div class="p-left-box">
@@ -246,10 +254,10 @@
             <div class="p-content-box2" style="background-color:white;">
                 <div class="p-content-box-lwlhitokoto2">
                     <div class="p-content-box-lwlhitokoto">
-                        <h3>Zeit丶浅白</h3>
-                        <span id="yiyan">ss</span>
+                        <h3>Zeit丶浅白<span id="yiyan">ss</span></h3>
+
                     </div>
-                    <iframe src="index1.html" scrolling="no" style="width: 100%; height: 800px;"
+                    <iframe src="index1.html" style="width: 100%; height: 800px;"
                             frameborder="0"></iframe>
                 </div>
             </div>
@@ -336,9 +344,9 @@
         </div>
     </div>
 </div>
-<div class="p-layout-right-btn">
-    <a class="go-top"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
-</div>
+<!--<div class="p-layout-right-btn">-->
+<!--    <a class="go-top"><i class="fa fa-caret-up" aria-hidden="true"></i></a>-->
+<!--</div>-->
 <script type="text/javascript" src="static/plugins/pjax/pjax.js"></script>
 <script type="text/javascript" src="static/plugins/layer/layer.js"></script>
 <script type="text/javascript" src="static/plugins/layui/layui.js"></script>
@@ -363,7 +371,12 @@
 <script src="static/js/index.js"></script>
 
 <div class="loadJs"></div>
+
 <script>
+    function setPageSrc(pageSrc) {
+        sessionStorage.setItem("pageSrc",pageSrc);
+        $("iframe").attr("src", pageSrc)
+    }
 </script>
 </body>
 </html>

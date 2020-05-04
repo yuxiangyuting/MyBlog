@@ -1,17 +1,11 @@
 package com.wei.controller;
 
-
-
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.ApiController;
-import com.baomidou.mybatisplus.extension.api.R;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wei.entity.Tag;
 import com.wei.service.TagService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -31,4 +25,13 @@ public class TagController extends ApiController {
     @Resource
     private TagService tagService;
 
+    @RequestMapping("findAll")
+    public List<Tag> findAll() {
+        return tagService.getBaseMapper().selectList(null);
+    }
+
+    @RequestMapping("insert")
+    public boolean insert(Tag tag) {
+        return tagService.insert(tag);
+    }
 }

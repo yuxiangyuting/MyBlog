@@ -29,7 +29,7 @@ public class ArticleController extends ApiController {
      * 查询所有文章内容 根据时间排序
      * @return 所有文章
      */
-    @GetMapping
+    @GetMapping("findAll")
     public List<Article> findAll(){
         return articleService.findAll();
     }
@@ -39,4 +39,8 @@ public class ArticleController extends ApiController {
         return articleService.selectByArtId(artId);
     }
 
+    @GetMapping()
+    public List<Article> selectArticleByUid(Integer uid){
+        return articleService.selectArticleByUid(uid);
+    }
 }

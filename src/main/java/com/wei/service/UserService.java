@@ -1,7 +1,10 @@
 package com.wei.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.wei.entity.Tag;
 import com.wei.entity.User;
+
+import java.util.List;
 
 /**
  * (User)表服务接口
@@ -32,5 +35,6 @@ public interface UserService extends IService<User> {
      * @param uid 用户id
      * @return 用户信息
      */
-    User searchUserByUserName(Integer uid);
+    User searchUserByUid(Integer uid);
+
 }

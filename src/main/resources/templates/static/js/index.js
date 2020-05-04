@@ -5,7 +5,8 @@
  "*/
 layui.use(['layer'], function () {
   layer=layui.layer;
-})
+
+});
 $("#body").css(
     "background-image",
     "linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%)"
@@ -15,9 +16,7 @@ $("#body").css(
  */
 /**自定义js代码
  */
-function setPageSrc(pageSrc) {
-    $("iframe").attr("src", pageSrc)
-}
+
 $(function () {
     var yiyan = $("#hitokoto").text();
     console.log(yiyan);

@@ -15,9 +15,11 @@ import org.apache.ibatis.annotations.Select;
  */
 public interface UserDao extends BaseMapper<User> {
 
-    @Select("select * from user where username = #{username} and password = #{password}" )
-    User findByUsernameAndPassword(@Param("username") String username,@Param("password") String password);
-
+    /**
+     * 用户注册
+     * @param user 用户信息
+     * @return 成功行数
+     */
     @Insert("insert into user (username,password) values(#{username},#{password})")
     int regsitered(User user);
 }
