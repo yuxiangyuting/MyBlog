@@ -1,0 +1,8 @@
+{
+  "name": "MyBlog-1",
+  "version": "1.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "vue-markdown": "^2.2.4"
+  }
+}

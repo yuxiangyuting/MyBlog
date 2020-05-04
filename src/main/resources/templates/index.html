@@ -28,7 +28,7 @@
     <div class="p-left-box">
         <div class="p-left-box-2">
             <div class="p-left-logo-box"><a class="p-left-logo-box-text pjax" href="/"><i class="fa fa-snowflake-o"></i><span
-                    class="p-left-logo-box-text-name">Perfree</span></a></div>
+                    class="p-left-logo-box-text-name">Zeit丶浅白</span></a></div>
             <div class="p-left-user-box"><a class="p-left-user-img-box pjax" href="/"><img
                     src="../userData/lmz123/info/txImg/tx.jpg"/></a><a class="p-left-user-name-box pjax" href="/"><span>&nbsp;</span></a>
                 <p>LV：<span>超星</span></p>
@@ -92,12 +92,12 @@
                     <div id="skPlayer"></div>
                 </div>
                 <div class="p-header-box-login-box"><a class="p-header-box-login-box-login"
-                                                       href="/user/login">登录</a><span
+                                                       href="login.html">登录</a><span
                         style="float: left; line-height: 50px;">|</span><a class="p-header-box-login-box-register"
-                                                                           href="/user/register">注册</a></div>
+                                                                           href="register.html">注册</a></div>
                 <a id="phoneSetting" style="display: none;"><i class="layui-icon"></i></a></div>
             <div class="p-phone-top-nav box-shadow">
-                <form action="/article/search"><input type="text" placeholder="请输入搜索内容" name="keyword" required/>
+                <form id="search"><input type="text" placeholder="请输入搜索内容" name="keyword" required/>
                     <button type="submit"><i class="layui-icon"></i></button>
                 </form>
                 <div class="p-phone-top-nav-login-box">
@@ -140,12 +140,12 @@
                         <div class="p-right-card-body">
                             <div class="p-right-tag-cloud">
                                 <a href=""
-                                 v-for='(t,index) in tag'
-                                 class="layui-btn layui-btn-radius perfree-tag pjax"
-                                 :title="'共有'+t.count+'篇文章'" data-pjax-state=""
-                                 :key="index"
-                                 >
-                                 {{t.tagname}}
+                                   v-for='(t,index) in tag'
+                                   class="layui-btn layui-btn-radius perfree-tag pjax"
+                                   :title="'共有'+t.count+'篇文章'" data-pjax-state=""
+                                   :key="index"
+                                >
+                                    {{t.tagname}}
                                 </a>
                             </div>
                         </div>
@@ -180,14 +180,19 @@
 <script src="static/plugins/node_modules/axios/dist/axios.js"></script>
 <script> new Vue({
     el: ".p-right-tag-cloud", data: {tag: "",}, mounted() {
-        const url = "http://localhost:8081/usertag/selectTagByUid?uid=1";
-        axios.get(url).then((response) => {
+        const url = "http://localhost:8081/usertag/selectTagByUid";
+        axios.get(url, {
+            params: {
+                uid: 1
+            }
+        }).then((response) => {
             const result = response.data;
             this.tag = result;
         }).catch((error) => {
             alert("失败");
         });
     },
-});</script>
+});
+</script>
 </body>
 </html>

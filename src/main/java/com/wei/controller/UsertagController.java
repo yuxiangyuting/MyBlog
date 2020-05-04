@@ -1,8 +1,6 @@
 package com.wei.controller;
 
 import com.baomidou.mybatisplus.extension.api.ApiController;
-import com.wei.entity.Tag;
-import com.wei.entity.User;
 import com.wei.entity.vo.UsertagVo;
 import com.wei.service.UsertagService;
 import org.springframework.web.bind.annotation.*;
