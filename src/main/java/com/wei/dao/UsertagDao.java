@@ -3,6 +3,7 @@ package com.wei.dao;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wei.entity.Tag;
 import com.wei.entity.Usertag;
+import com.wei.entity.vo.UsertagVo;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public interface UsertagDao extends BaseMapper<Usertag> {
      * @param uid 作者id
      * @return 标签集合
      */
-    @Select("select * from userTag u,tag t where t.tagId=u.tagId and uid=#{uid}")
-    List<Tag> selectTagsByUid(Integer uid);
+    @Select("select u.uTid,u.uid,t.tagId,t.tagName,count(a.tagId) count from userTag u join tag t on t.tagId=u.tagId join article a on a.tagId=u.tagId where u.uid=1 group by u.tagId")
+    List<UsertagVo> selectTagsByUid(Integer uid);
 
 }

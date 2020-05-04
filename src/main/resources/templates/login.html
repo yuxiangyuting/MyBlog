@@ -12,14 +12,7 @@
       rel="stylesheet"
       href="static/components/bootstrap/css/bootstrap.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="static/components/font-awesome/css/font-awesome.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="static/components/ionicons/css/ionicons.min.css"
-    />
+
     <link rel="stylesheet" href="static/adminlte/css/AdminLTE.min.css" />
     <style>
       .login-page {
@@ -68,7 +61,7 @@
                   value="登 录"
                 />
                 <p class="help-block" style="float: left;">
-                  还没有账号？点击 <a href="/user/register">这里</a> 注册。
+                  还没有账号？点击 <a href="register.html">这里</a> 注册。
                 </p>
               </div>
             </div>
@@ -76,20 +69,27 @@
         </div>
       </div>
     </div>
-    <script src="static/components/jquery/jquery.min.js"></script>
-    <script src="static/components/jquery/jquery.form.min.js"></script>
-    <script src="static/components/bootstrap/js/bootstrap.min.js"></script>
-    <script src="static/commons/jpresscommons.js"></script>
     <script src="static/js/vue.js"></script>
     <script src="static/plugins/node_modules/axios/dist/axios.js"></script>
     <script>
       new Vue({
+        el: "#login",
         data: {
           res: "",
         },
         methods: {
           login() {
-            alert("dfdfd");
+            const url = "http://localhost:8081/tag/findAll";
+            axios
+              .get(url)
+              .then((response) => {
+                const result = response.data;
+                this.res = result;
+                alert("成功！" + result);
+              })
+              .catch((error) => {
+                alert("失败");
+              });
           },
         },
       });

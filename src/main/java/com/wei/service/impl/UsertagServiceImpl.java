@@ -1,10 +1,9 @@
 package com.wei.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wei.dao.UsertagDao;
-import com.wei.entity.Tag;
 import com.wei.entity.Usertag;
+import com.wei.entity.vo.UsertagVo;
 import com.wei.service.UsertagService;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +19,7 @@ import java.util.List;
 public class UsertagServiceImpl extends ServiceImpl<UsertagDao, Usertag> implements UsertagService {
 
     @Override
-    public List<Tag> selectTagByUid(Integer uid) {
+    public List<UsertagVo> selectTagByUid(Integer uid) {
         return getBaseMapper().selectTagsByUid(uid);
     }
 }
