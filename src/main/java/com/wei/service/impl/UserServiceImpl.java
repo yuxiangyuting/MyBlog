@@ -48,16 +48,23 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
         return getBaseMapper().regsitered(user) > 0;
     }
 
+
     /**
      * 通过用户名查询用户信息
      *
-     * @param uid 用户id
+     * @param username 用户名
      * @return 用户信息
      */
     @Override
-    public User searchUserByUid(Integer uid) {
+    public User searchUserByuName(String username) {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
-        wrapper.eq("uid", uid);
+        wrapper.eq("username", username);
         return getBaseMapper().selectOne(wrapper);
     }
+
+    @Override
+    public Object searchUserInfo(Integer uid) {
+        return getBaseMapper().searchUserInfo(uid);
+    }
+
 }

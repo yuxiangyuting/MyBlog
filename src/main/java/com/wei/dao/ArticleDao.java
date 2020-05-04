@@ -20,4 +20,5 @@ public interface ArticleDao extends BaseMapper<Article> {
      */
     @Select("select * from article order by pushDate desc")
     List<Article> findAll();
+
 }

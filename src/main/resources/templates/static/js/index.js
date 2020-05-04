@@ -190,7 +190,7 @@ var chakhsu = function (r) {
     }
 
     var l = "♥",
-        o = ["简简单单的生活,安安静静的写博客"].map(function (r) {
+        o = ["天下皆白，唯我独黑"].map(function (r) {
             return r + "";
         }),
         a = 2,

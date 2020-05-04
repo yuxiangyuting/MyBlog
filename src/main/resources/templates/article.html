@@ -38,7 +38,7 @@
                     href="https://twitter.com/share?text=Perfree-Simple-Pro-致更好的你&amp;url=https://www.jpress.yinpengfei.com/article/9"
                     target="_blank" title="分享到Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></div>
         </div>
-        <div class="p-article-img" :style="'background-size: cover;background-image: url('+article.image+')'"></div>
+        <div v-if="article.image!=''" class="p-article-img" :style="'background-size: cover;background-image: url('+article.image+')'"></div>
         <article class="p-article-content-box" id="article" style="padding:20px;margin-bottom: 20px">
             <div id="articleContent">
                 <vue-markdown :source="article.content"></vue-markdown>
