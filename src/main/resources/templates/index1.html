@@ -92,9 +92,9 @@
                 defer
         ></script>
     </div>
-<!--    <div class="p-layout-right-btn">-->
-<!--        <a class="go-top"><i class="fa fa-caret-up" aria-hidden="true"></i></a>-->
-<!--    </div>-->
+    <!--    <div class="p-layout-right-btn">-->
+    <!--        <a class="go-top"><i class="fa fa-caret-up" aria-hidden="true"></i></a>-->
+    <!--    </div>-->
     <script src="https://v1.hitokoto.cn/?encode=js&amp;select=%23hitokoto" defer></script>
     <script type="text/javascript" src="static/plugins/pjax/pjax.js"></script>
     <script type="text/javascript" src="static/plugins/layui/layui.js"></script>
@@ -111,8 +111,10 @@
                 TopArticle: "",
             },
             mounted() {
-                localStorage.setItem("uid", 1);
-                const uid = localStorage.getItem("uid");
+                let uid = localStorage.getItem("uid");
+                if (uid === null||uid===undefined) {
+                    uid = 1;
+                }
                 const url = "http://localhost:8081/article/selectTopArticleByUid";
                 axios.get(url, {
                     params: {

@@ -137,8 +137,15 @@
     Vue.use(VueMarkdown);
     new Vue({
         el: "#viewArticle", data: {article: "",}, mounted() {
+            const haha = location.href;
+            let artId = "";
+            if (haha.indexOf("=") === -1) {
+                artId = 1;
+            } else {
+                artId = haha.split("=")[1];
+            }
             const url = "http://localhost:8081/article/selectByArtId";
-            axios.get(url, {params: {artId: 1,}}).then((response) => {
+            axios.get(url, {params: {artId: artId,}}).then((response) => {
                 const result = response.data;
                 this.article = result;
             }).catch((error) => {
