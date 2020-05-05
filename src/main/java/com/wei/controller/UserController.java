@@ -3,7 +3,7 @@ package com.wei.controller;
 
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.api.R;
-import com.wei.entity.User;
+import com.wei.entity.vo.UserVo;
 import com.wei.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,7 +57,7 @@ public class UserController extends ApiController {
      * @return 用户信息
      */
     @GetMapping("searchUserByuName")
-    public User searchUserByuName(String username) {
+    public UserVo searchUserByuName(String username) {
         return userService.searchUserByuName(username);
     }
 

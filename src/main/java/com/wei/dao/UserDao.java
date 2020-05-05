@@ -31,4 +31,13 @@ public interface UserDao extends BaseMapper<User> {
      */
     @Select("select u.uid,username,u.joindate,TIMESTAMPDIFF(DAY,u.joindate,now()) regtime,u.nickname,u.eamil,u.signature,u.phonenumber,u.tximg,count(a.uid) acount from article a join user u on a.uid = u.uid where u.uid=#{uid}")
     UserVo searchUserInfo(long uid);
+
+    /**
+     * 查找该用户的所有信息
+     *
+     * @param nickname 用户昵称
+     * @return 用户信息
+     */
+    @Select("select u.uid,username,u.joindate,TIMESTAMPDIFF(DAY,u.joindate,now()) regtime,u.nickname,u.eamil,u.signature,u.phonenumber,u.tximg,count(a.uid) acount from article a join user u on a.uid = u.uid where u.nickname=#{nickname}")
+    UserVo searchUserInfoByNickname(String nickname);
 }
