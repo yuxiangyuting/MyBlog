@@ -19,6 +19,7 @@ import java.util.List;
  * @author makejava
  * @since 2020-05-05 12:13:18
  */
+@CrossOrigin
 @RestController
 @RequestMapping("reply")
 public class ReplyController extends ApiController {

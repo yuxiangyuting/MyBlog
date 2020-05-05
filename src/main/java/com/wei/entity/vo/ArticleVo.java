@@ -50,6 +50,10 @@ public class ArticleVo extends Model<ArticleVo> {
      */
     private long pageView;
     /**
+     * 评论数
+     */
+    private long tiCount;
+    /**
      * 是否置顶
      */
     private Integer top;
@@ -57,7 +61,7 @@ public class ArticleVo extends Model<ArticleVo> {
     /**
      * 标签分类
      */
-    private String tag;
+    private String tagName;
     /**
      * 获取主键值
      *

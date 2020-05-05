@@ -196,7 +196,7 @@
         },
         mounted() {
             uid = parseInt(localStorage.getItem("uid"));
-            const url = "http://localhost:8082/user/searchUserInfo";
+            const url = "http://localhost:8081/user/searchUserInfo";
             axios.get(url, {
                 params: {
                     uid: uid

@@ -2,6 +2,7 @@ package com.wei.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wei.entity.Article;
+import com.wei.entity.vo.ArticleVo;
 import org.apache.ibatis.annotations.Select;
 
 /**
@@ -32,5 +33,5 @@ public interface ArticleDao extends BaseMapper<Article> {
             "         join tag t on t.tagId = a.tagId\n" +
             "         join reply ti on a.artId = ti.artId\n" +
             "where a.artId = #{artId};")
-    Article selectByArtId(long artId);
+    ArticleVo selectByArtId(long artId);
 }

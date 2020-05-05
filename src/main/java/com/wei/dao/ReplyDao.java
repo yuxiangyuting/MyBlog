@@ -20,7 +20,7 @@ public interface ReplyDao extends BaseMapper<Reply> {
      * @param artId 文章id
      * @return 回复列表
      */
-    @Select("select t.tid,u.nickname,t.content,t.tiDate,t.`like`,t.artId from reply t join user u on t.uid = u.uid where artId=#{artId} and replyId=#{replyId}")
+    @Select("select t.tid,u.nickname,u.uid,u.tximg,t.content,t.tiDate,t.`like`,t.artId from reply t join user u on t.uid = u.uid where artId=#{artId} and replyId=#{replyId}")
     List<Reply> replyList(@Param("artId") long artId, @Param("replyId") long replyId);
 
     /**
@@ -29,6 +29,6 @@ public interface ReplyDao extends BaseMapper<Reply> {
      * @param artId 文章id
      * @return 回复列表
      */
-    @Select("select t.tid,u.nickname,t.content,t.tiDate,t.`like`,t.artId from reply t join user u on t.uid = u.uid where artId=#{artId} and replyId IS NULL")
+    @Select("select t.tid,u.nickname,u.uid,u.tximg,t.content,t.tiDate,t.`like`,t.artId from reply t join user u on t.uid = u.uid where artId=#{artId} and replyId IS NULL")
     List<Reply> noReplyList(long artId);
 }

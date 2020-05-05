@@ -53,12 +53,12 @@ public class UserController extends ApiController {
     /**
      * 通过用户名查询用户信息
      *
-     * @param username 用户名
+     * @param nickname 用户昵称
      * @return 用户信息
      */
-    @GetMapping("searchUserByuName")
-    public UserVo searchUserByuName(String username) {
-        return userService.searchUserByuName(username);
+    @GetMapping("searchUserByNickname")
+    public UserVo searchUserByNickname(String nickname) {
+        return userService.searchUserByNickname(nickname);
     }
 
     /**

@@ -36,7 +36,7 @@ public interface UserService extends IService<User> {
      * @param username 用户名
      * @return 用户信息
      */
-    UserVo searchUserByuName(String username);
+    UserVo searchUserByNickname(String username);
 
     /**
      * 通过用id查询用户信息

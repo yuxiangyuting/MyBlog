@@ -2,6 +2,7 @@ package com.wei.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.wei.entity.Article;
+import com.wei.entity.vo.ArticleVo;
 
 import java.util.List;
 
@@ -19,7 +20,7 @@ public interface ArticleService extends IService<Article> {
      * @param artId 文章id
      * @return 文章对象
      */
-    Article selectByArtId(long artId);
+    ArticleVo selectByArtId(long artId);
 
     /**
      * 查找该uid的所有置顶的文章

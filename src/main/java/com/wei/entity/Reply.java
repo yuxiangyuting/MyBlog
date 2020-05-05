@@ -33,6 +33,14 @@ public class Reply extends Model<Reply> {
      */
     private Long uid;
     /**
+     * 用户昵称
+     */
+    private String nickname;
+    /**
+     * 用户头像
+     */
+    private String tximg;
+    /**
      * 评论内容
      */
     private String content;

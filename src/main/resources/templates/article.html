@@ -18,13 +18,13 @@
 <div id="viewArticle" class="p-container-box ">
     <div class="p-content-box layui-anim layui-anim-upbit" :key="key">
         <div class="p-content-box-lwlhitokoto"><h2>{{article.title}}</h2><span><i class="fa fa-user-o"
-                                                                                  aria-hidden="true"></i>{{article.username}}</span><span><i
+                                                                                  aria-hidden="true"></i>&nbsp;{{article.nickname}}</span><span><i
                 class="fa fa-clock-o" aria-hidden="true"></i> {{article.pushDate}}</span><span><i class="fa fa-eye"
-                                                                                                  aria-hidden="true"></i> {{article.pageView}}</span><span><i
-                class="fa fa-comment-o" aria-hidden="true"></i> 34条评论</span></div>
+                                                                                                  aria-hidden="true"></i>{{article.pageView}}</span><span><i
+                class="fa fa-comment-o" aria-hidden="true"></i>&nbsp;{{article.tiCount}}条评论</span></div>
         <div class="p-article-share-box layui-clear">
-            <div class="p-share-left"><a class="p-index-link pjax" href="/"><i class="fa fa-home fa-fw"></i>首页</a>/<span
-                    class="p-active-link">正文</span></div>
+            <div class="p-share-left"><a class="p-index-link pjax" href="/"><i class="fa fa-home fa-fw"></i>分类</a>/<span
+                    class="p-active-link">{{article.tagName}}</span></div>
             <div class="p-share-right"><span>分享到:</span><a class="qq"
                                                            onclick="shareToqq(event, '/attachment/20190603/429ac173b205465ba3e3a1410bd38e88.jpg')"
                                                            title="分享到QQ"><i class="fa fa-qq" aria-hidden="true"></i></a>/<a
@@ -38,7 +38,8 @@
                     href="https://twitter.com/share?text=Perfree-Simple-Pro-致更好的你&amp;url=https://www.jpress.yinpengfei.com/article/9"
                     target="_blank" title="分享到Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></div>
         </div>
-        <div v-if="article.image!=''" class="p-article-img" :style="'background-size: cover;background-image: url('+article.image+')'"></div>
+        <div v-if="article.image!=''" class="p-article-img"
+             :style="'background-size: cover;background-image: url('+article.image+')'"></div>
         <article class="p-article-content-box" id="article" style="padding:20px;margin-bottom: 20px">
             <div id="articleContent">
                 <vue-markdown :source="article.content"></vue-markdown>
@@ -64,55 +65,36 @@
         </div>
         <h2 class="p-commoent-count">评论列表</h2>
         <div class="p-article-comment-list-box" id="allComment" style="padding-bottom: 60px">
-            <div class="p-article-revert-box">
+            <div class="p-article-revert-box" v-for="(c,index) in allComment" :key="index">
+                <!--评论-->
                 <div class="p-article-revert-container layui-clear">
-                    <div class="p-revert-user layui-clear"><img src="static/images/user.jpeg" alt=""
-                                                                class="p-user-img"/>
-                        <div class="p-article-revert-container-right"><span class="p-revert-user-name">匿名用户</span><span
-                                class="p-revert-time">2020-04-28 18:26:01</span></div>
+                    <div class="p-revert-user layui-clear">
+                        <img :src="p.tximg" alt="" class="p-user-img">
+                        <div class="p-article-revert-container-right">
+                            <span v-if="comment.nickname==null" class="p-revert-user-name">匿名用户</span>
+                            <span v-else class="p-revert-user-name">{{p.nickname}}</span>
+                            <span class="p-revert-time">{{p.tidate}}</span>
+                        </div>
                     </div>
-                    <div class="p-revert-content">和</div>
-                    <a href="javascript:;" data-cid="96" data-author="匿名用户" class="p-revert-btn">回复</a></div>
-            </div>
-            <div class="p-article-revert-box">
-                <div class="p-article-revert-container layui-clear">
-                    <div class="p-revert-user layui-clear"><img src="static/images/user.jpeg" alt=""
-                                                                class="p-user-img"/>
-                        <div class="p-article-revert-container-right"><span class="p-revert-user-name">匿名用户</span><span
-                                class="p-revert-time">2020-04-17 18:34:30</span></div>
+                    <div class="p-revert-content">{{p.content}}</div>
+                    <input type="hidden" v-model="tid">
+                    <a href="javascript:;" class="p-revert-btn"
+                       @click="sendReply(rep.tid)">回复</a><span>{{p.like}}</span>
+                </div>
+                <!-- 回复-->
+                <div v-for="(rep,index) in p.list" class="p-article-revert-container p-revert-child layui-clear">
+                    <div class="p-revert-user layui-clear">
+                        <img :src="rep.tximg" alt="" class="p-user-img">
+                        <div class="p-article-revert-container-right">
+                            <span v-if="rep.nickname==null" class="p-revert-user-name">匿名用户</span>
+                            <span v-else class="p-revert-user-name">{{rep.nickname}}</span>
+                            <span class="p-revert-time">{{rep.tidate}}</span>
+                        </div>
                     </div>
-                    <div class="p-revert-content">sss</div>
-                    <a href="javascript:;" data-cid="93" data-author="匿名用户" class="p-revert-btn">回复</a></div>
-            </div>
-            <div class="p-article-revert-box">
-                <div class="p-article-revert-container layui-clear">
-                    <div class="p-revert-user layui-clear"><img src="static/images/user.jpeg" alt=""
-                                                                class="p-user-img"/>
-                        <div class="p-article-revert-container-right"><span class="p-revert-user-name">匿名用户</span><span
-                                class="p-revert-time">2020-04-17 18:34:27</span></div>
-                    </div>
-                    <div class="p-revert-content">xz</div>
-                    <a href="javascript:;" data-cid="92" data-author="匿名用户" class="p-revert-btn">回复</a></div>
-            </div>
-            <div class="p-article-revert-box">
-                <div class="p-article-revert-container layui-clear">
-                    <div class="p-revert-user layui-clear"><img src="static/images/user.jpeg" alt=""
-                                                                class="p-user-img"/>
-                        <div class="p-article-revert-container-right"><span class="p-revert-user-name">匿名用户</span><span
-                                class="p-revert-time">2020-04-13 14:27:36</span></div>
-                    </div>
-                    <div class="p-revert-content">nice</div>
-                    <a href="javascript:;" data-cid="91" data-author="匿名用户" class="p-revert-btn">回复</a></div>
-            </div>
-            <div class="p-article-revert-box">
-                <div class="p-article-revert-container layui-clear">
-                    <div class="p-revert-user layui-clear"><img src="static/images/user.jpeg" alt=""
-                                                                class="p-user-img"/>
-                        <div class="p-article-revert-container-right"><span class="p-revert-user-name">匿名用户</span><span
-                                class="p-revert-time">2020-04-05 12:33:17</span></div>
-                    </div>
-                    <div class="p-revert-content">好看</div>
-                    <a href="javascript:;" data-cid="90" data-author="匿名用户" class="p-revert-btn">回复</a></div>
+                    <div class="p-revert-content">{{rep.content}}</div>
+                    <input type="hidden" v-model="tid">
+                    <a href="javascript:;" class="p-revert-btn" @click="sendReply(rep.tid)">回复</a>
+                </div>
             </div>
             <div class="perfree-page-box layui-clear"><a class="page-item previous disabled pjax" href="javascript:;">上一页</a><a
                     class="page-item active pjax" href="javascript:;">1</a><a class="page-item pjax"
@@ -152,6 +134,33 @@
                 alert("失败");
             });
         },
+    });
+</script>
+<script>
+    new Vue({
+        el: "#allComment", data: {
+            allComment: [],
+            tid: ''
+        }, mounted() {
+            const haha = location.href;
+            let artId = "";
+            if (haha.indexOf("=") === -1) {
+                artId = 1;
+            } else {
+                artId = haha.split("=")[1];
+            }
+            const url = "http://localhost:8081/reply/commentSystem";
+            axios.get(url, {params: {artId: artId,}}).then((response) => {
+                this.allComment = response.data;
+            }).catch((error) => {
+                layer.msg("获取评论列表失败！");
+            });
+        },
+        method: {
+            sendReply(tid) {
+                this.tid = tid;
+            }
+        }
     });
 </script>
 </body>

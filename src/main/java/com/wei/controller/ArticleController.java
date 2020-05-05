@@ -3,6 +3,7 @@ package com.wei.controller;
 
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.wei.entity.Article;
+import com.wei.entity.vo.ArticleVo;
 import com.wei.service.ArticleService;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +27,7 @@ public class ArticleController extends ApiController {
     private ArticleService articleService;
 
     @RequestMapping("selectByArtId")
-    public Article selectByArtId(Integer artId) {
+    public ArticleVo selectByArtId(Integer artId) {
         return articleService.selectByArtId(artId);
     }
 
@@ -45,7 +46,7 @@ public class ArticleController extends ApiController {
         return articleService.findAllTopArticle();
     }
 
-    @GetMapping("selectNoTopArticle")
+    @GetMapping("findAllNoTopArticle")
     public List<Article> findAllNoTopArticle() {
         return articleService.findAllNoTopArticle();
     }
