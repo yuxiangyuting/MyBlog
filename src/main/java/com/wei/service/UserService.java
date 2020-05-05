@@ -37,5 +37,5 @@ public interface UserService extends IService<User> {
      */
     User searchUserByuName(String username);
 
-    Object searchUserInfo(Integer uid);
+    Object searchUserInfo(long uid);
 }

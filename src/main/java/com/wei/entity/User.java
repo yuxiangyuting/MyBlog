@@ -28,7 +28,7 @@ public class User extends Model<User> {
      * 主键
      */
     @TableId
-    private Integer uid;
+    private long uid;
 
     /**
      * 用户名

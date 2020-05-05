@@ -29,7 +29,7 @@ public class UserVo extends Model<UserVo> {
      * 主键
      */
     @TableId
-    private Integer uid;
+    private long uid;
 
     /**
      * 用户名
@@ -74,7 +74,7 @@ public class UserVo extends Model<UserVo> {
     /**
      * 改用户博客总数
      */
-    private Integer acount;
+    private long acount;
 
     /**
      * 获取主键值

@@ -24,11 +24,11 @@ public class ArticleVo extends Model<ArticleVo> {
     /**
      * 文章id
      */
-    private Integer artid;
+    private long artid;
     /**
-     * 用户id
+     * 用户昵称
      */
-    private Integer uid;
+    private String nickname;
     /**
      * 封面图片
      */
@@ -48,12 +48,16 @@ public class ArticleVo extends Model<ArticleVo> {
     /**
      * 浏览量
      */
-    private Integer pageView;
+    private long pageView;
     /**
      * 是否置顶
      */
     private Integer top;
 
+    /**
+     * 标签分类
+     */
+    private String tag;
     /**
      * 获取主键值
      *

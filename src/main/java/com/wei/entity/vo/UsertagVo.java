@@ -23,16 +23,16 @@ public class UsertagVo extends Model<UsertagVo> {
     /**
      * id
      */
-    private Integer utid;
+    private long utid;
 
     /**
      * 标签id
      */
-    private Integer tagid;
+    private long tagid;
     /**
      * 用户id
      */
-    private Integer uid;
+    private long uid;
 
     /**
      * 标签名
@@ -42,7 +42,7 @@ public class UsertagVo extends Model<UsertagVo> {
     /**
      * 每个标签下的文章数量
      */
-    private Integer count;
+    private long count;
 
     /**
      * 获取主键值

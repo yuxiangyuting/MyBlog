@@ -23,15 +23,15 @@ public class Usertag extends Model<Usertag> {
     /**
     *id
     */
-    private Integer utid;
+    private long utid;
     /**
     *用户id
     */
-    private Integer uid;
+    private long uid;
     /**
     *标签id
     */
-    private Integer tagid;
+    private long tagid;
 
 
     /**

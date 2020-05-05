@@ -3,14 +3,11 @@ package com.wei.controller;
 
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.baomidou.mybatisplus.extension.api.R;
-import com.wei.entity.Tag;
 import com.wei.entity.User;
-import com.wei.entity.vo.UserVo;
 import com.wei.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * (User)表控制层
@@ -71,8 +68,11 @@ public class UserController extends ApiController {
      * @return 用户信息
      */
     @GetMapping("searchUserInfo")
-    public R searchUserInfo(Integer uid){
-        System.out.println("uid="+uid);
+    public R searchUserInfo(Integer uid) {
+        System.out.println("uid=" + uid);
+        if (uid == null) {
+            uid = 1;
+        }
         return success(this.userService.searchUserInfo(uid));
     }
 }

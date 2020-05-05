@@ -25,27 +25,28 @@ public class ArticleController extends ApiController {
     @Resource
     private ArticleService articleService;
 
-    /**
-     * 查询所有文章内容 根据时间排序
-     * @return 所有文章
-     */
-    @GetMapping
-    public List<Article> findAll(){
-        return articleService.findAll();
-    }
-
     @RequestMapping("selectByArtId")
     public Article selectByArtId(Integer artId) {
         return articleService.selectByArtId(artId);
     }
 
     @GetMapping("selectTopArticleByUid")
-    public List<Article> selectTopArticleByUid(Integer uid){
+    public List<Article> selectTopArticleByUid(Integer uid) {
         return articleService.selectTopArticleByUid(uid);
     }
 
     @GetMapping("selectNoTopArticleByUid")
-    public List<Article> selectNoTopArticleByUid(Integer uid){
+    public List<Article> selectNoTopArticleByUid(Integer uid) {
         return articleService.selectNoTopArticleByUid(uid);
+    }
+
+    @GetMapping("findAllTopArticle")
+    public List<Article> findAllTopArticle() {
+        return articleService.findAllTopArticle();
+    }
+
+    @GetMapping("selectNoTopArticle")
+    public List<Article> findAllNoTopArticle() {
+        return articleService.findAllNoTopArticle();
     }
 }
