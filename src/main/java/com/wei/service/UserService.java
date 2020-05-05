@@ -16,6 +16,7 @@ public interface UserService extends IService<User> {
 
     /**
      * 登录方法
+     *
      * @param username 用户名
      * @param password 密码
      * @return
@@ -24,6 +25,7 @@ public interface UserService extends IService<User> {
 
     /**
      * 注册
+     *
      * @param username 用户名
      * @param password 密码
      * @return
@@ -32,10 +34,26 @@ public interface UserService extends IService<User> {
 
     /**
      * 通过用户名查询用户信息
+     *
      * @param username 用户id
      * @return 用户信息
      */
     User searchUserByuName(String username);
 
-    Object searchUserInfo(long uid);
-}
+    /**
+     * 通过用户名查询用户信息
+     *
+     * @param uid 用户id
+     * @return 用户信息
+     */
+    User searchUserInfo(long uid);
+
+    /**
+     * 通过用户名查询用户信息
+     *
+     * @param uid 用户id
+     * @return 用户信息
+     */
+    User searchUserByUid(long uid);
+
+    }
