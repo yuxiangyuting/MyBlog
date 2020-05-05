@@ -60,11 +60,16 @@ public class Reply extends Model<Reply> {
      * 回复的评论tid
      */
     @TableField(select = false)
-    private Long replyid;
+    private Long parentId;
     /**
-     * 回复列表
+     * 子级回复列表
      */
-    private List<Reply> list;
+    private List<Reply> child;
+
+    /**
+     * 一级评论id
+     */
+    private long replyId;
 
     /**
      * 获取主键值

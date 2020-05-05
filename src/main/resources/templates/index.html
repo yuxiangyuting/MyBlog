@@ -195,7 +195,10 @@
             userInfo: ""
         },
         mounted() {
-            uid = parseInt(localStorage.getItem("uid"));
+            let uid = parseInt(localStorage.getItem("uid"));
+            if (uid === undefined || uid === null) {
+                uid = 1;
+            }
             const url = "http://localhost:8081/user/searchUserInfo";
             axios.get(url, {
                 params: {
@@ -215,6 +218,12 @@
     });
     new Vue({
         el: ".p-right-tag-cloud", data: {tag: "",}, mounted() {
+            let a = localStorage.getItem("uid");
+            if (a === undefined || a === null) {
+                let uid  = 1;
+            } else {
+                let uid = parseInt(a);
+            }
             const url = "http://localhost:8081/usertag/selectTagByUid";
             axios.get(url, {
                 params: {

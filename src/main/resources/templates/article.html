@@ -81,12 +81,14 @@
                             <vue-markdown :source="p.content"></vue-markdown>
                         </p>
                     </div>
-                    <input type="hidden" v-model="tid">
-                    <a href="javascript:;" class="p-revert-btn" @click="sendReply(rep.tid)">回复</a>
-                    <span>{{p.like}}</span>
+                    <div style="display: flex;">
+                        <input type="hidden" v-model="tid">
+                        <a href="javascript:;" class="p-revert-btn" @click="sendReply(rep.tid)">回复</a>
+                        <span>{{p.like}}</span>
+                    </div>
                 </div>
                 <!-- 回复-->
-                <div v-for="(rep,key,index) in p.list" :key="index"
+                <div v-for="(rep,key,index) in p.child" :key="index"
                      class="p-article-revert-container p-revert-child layui-clear">
                     <div class="p-revert-user layui-clear">
                         <img :src="rep.tximg" alt="" class="p-user-img">
@@ -98,6 +100,7 @@
                     </div>
                     <div class="p-revert-content">
                         <p style="padding: 10px;background: white;border-radius: 5px;box-shadow: 0 0 2px rgba(0,0,0,0.2)">
+                            回复{{p.nickname}}
                             <vue-markdown :source="rep.content"></vue-markdown>
                         </p>
                     </div>
