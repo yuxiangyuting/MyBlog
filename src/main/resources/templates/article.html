@@ -13,7 +13,9 @@
     <link rel="stylesheet" href="static/css/perfree.min.css" media="all"/>
     <link rel="stylesheet" href="static/plugins/font-awesome/css/font-awesome.min.css" media="all"/>
     <link rel="stylesheet" href="static/css/iPage.css">
+    <link rel="stylesheet" href="static/plugins/editor/css/editormd.min.css"/>
     <script type="text/javascript" src="static/plugins/jquery/jquery-3.2.1.min.js"></script>
+    <script src="static/plugins/editor/editormd.min.js"></script>
 </head>
 <body>
 <div id="viewArticle" class="p-container-box ">
@@ -51,19 +53,13 @@
                 href="/article/10" articletitle="推荐一款分布式文件服务器" class="p-next-article pjax" id="nextArticle">下一篇</a>
         </div>
 
-        <div id="comment" class="p-article-comment-box">
-            <form class="layui-form" action="/article/postComment" id="commentForm" method="post"><input type="hidden"
-                                                                                                         name="articleId"
-                                                                                                         value="9"
-                                                                                                         id="articleId"/><input
-                    type="hidden" name="revertPid" id="revertPid"/><textarea id="revert" style="display: none;"
-                                                                             name="content"
-                                                                             lay-verify="content"></textarea>
-                <div class="p-send-comment-box layui-clear"><span style="font-size: 14px;">说点什么吧~</span>
-                    <button class="layui-btn p-send-comment-btn revert-submit" lay-submit lay-filter="comment">发表评论
-                    </button>
-                </div>
-            </form>
+        <!--        评论-->
+        <div id="editor">
+            <textarea style="display: none"></textarea>
+        </div>
+        <div class="p-send-comment-box layui-clear"><span style="font-size: 14px;">说点什么吧~</span>
+            <button class="layui-btn p-send-comment-btn revert-submit" lay-submit lay-filter="comment">发表评论
+            </button>
         </div>
 
         <h2 class="p-commoent-count">评论列表</h2>
@@ -112,21 +108,7 @@
                     <span>{{rep.like}}</span>
                 </div>
             </div>
-            <!--分页组件-->
-            <div id="vue-dingyi-paging">
-                <ul>
-                    <a class="pageLink" href="#" @click.prevent>共{{totalNum}}页</a>
-                    <li><a class="pageLink" href="#" @click.prevent="setPage(1)">首页</a></li>
-                    <li>
-                        <a class="pageLink" href="#" @click.prevent="setPage(curNum-1)"><</a>
-                    </li>
-                    <a class="pageLink" href="#" @click.prevent v-text="curNum"></a>
-                    <li><a class="pageLink" href="#" @click.prevent="setPage(curNum+1)">></a></li>
-                    <li><a class="pageLink" href="#" @click.prevent="setPage(totalNum)">末页</a></li>
-                    <input type="text" v-model="pageCode" class="pageLink" style="border: 0" placeholder="输入">
-                    <li><a class="pageLink" href="#" @click.prevent="setPage(pageCode)">跳转</a></li>
-                </ul>
-            </div>
+
         </div>
     </div>
 </div>
@@ -136,18 +118,18 @@
 <script src="static/js/vue.js"></script>
 <script src="static/plugins/node_modules/axios/dist/axios.js"></script>
 <script src="static/plugins/node_modules/vue-markdown/dist/vue-markdown.js"></script>
+
 <script>
 
     Vue.use(VueMarkdown);
     new Vue({
-        el: "#viewArticle", data: {
+        el: "#viewArticle",
+        data: {
             article: "",
             comment: "",
             tid: '',
-            pageCode: '',
-            totalNum: 10, //总页数
-            curNum: 1 //当前页
         }, mounted() {
+
             const haha = location.href;
             let artId = "";
             if (haha.indexOf("=") > 0) {
@@ -173,40 +155,107 @@
                     params:
                         {
                             artId: artId,
-                            page: this.curNum,
                         }
                 }).then((response) => {
                 this.comment = response.data;
-                this.totalNum = parseInt(response.data[0].tiCount/10)+1;
-                console.log(this.article)
             }).catch((error) => {
                 layer.msg("获取评论列表失败！");
             });
         },
         methods: {
-            sendReply(tid) {
-                layer.msg("hello");
-                this.tid = tid;
+            // 将图片上传到服务器，返回地址替换到md中
+            $imgAdd(pos, $file) {
+                let formdata = new FormData();
+
+                this.$upload.post('/上传接口地址', formdata).then(res => {
+                    console.log(res.data);
+                    this.$refs.md.$img2Url(pos, res.data);
+                }).catch(err => {
+                    console.log(err)
+                })
             },
-            //切换页码
-            setPage(num) {
-                if (this.pageCode > this.curNum) {
-                    this.pageCode = this.totalNum;
-                } else if (this.pageCode < 0) {
-                    this.pageCode = 1;
-                }
-                //页码小于等于1
-                if (num <= 1) {
-                    return this.curNum = 1;
-                }
-                //页码大于总页数
-                if (num >= this.totalNum) {
-                    return this.curNum = this.totalNum;
-                }
-                //页码赋给当前页
-                this.curNum = num;
+            // 所有操作都会被解析重新渲染
+            change(value, render) {
+                // render 为 markdown 解析后的结果[html]
+                this.html = render;
+            },
+            // 提交
+            submit() {
+                console.log(this.content);
+                console.log(this.html);
+                this.$message.success('提交成功，已打印至控制台！');
             }
         }
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        var editor = editormd("editor", {
+            toolbarModes:'mini',
+            width: "100%",
+            height: 250,
+            path: "static/plugins/editor/lib/",
+            codeFold: true,
+            //syncScrolling : false,
+            saveHTMLToTextarea: false,    // 保存 HTML 到 Textarea
+            searchReplace: true,
+            //watch : false,                // 关闭实时预览
+            htmlDecode: "style,script,iframe|on*",            // 开启 HTML 标签解析，为了安全性，默认不开启
+            //toolbar  : false,             //关闭工具栏
+            //previewCodeHighlight : false, // 关闭预览 HTML 的代码块高亮，默认开启
+            emoji: true,
+            taskList: true,
+            tocm: true,         // Using [TOCM]
+            tex: true,                   // 开启科学公式TeX语言支持，默认关闭
+            flowChart: true,             // 开启流程图支持，默认关闭
+            sequenceDiagram: true,       // 开启时序/序列图支持，默认关闭,
+            //dialogLockScreen : false,   // 设置弹出层对话框不锁屏，全局通用，默认为true
+            // dialogShowMask : false,     // 设置弹出层对话框显示透明遮罩层，全局通用，默认为true
+            //dialogDraggable : false,    // 设置弹出层对话框不可拖动，全局通用，默认为true
+            //dialogMaskOpacity : 0.4,    // 设置透明遮罩层的透明度，全局通用，默认值为0.1
+            //dialogMaskBgColor : "#000", // 设置透明遮罩层的背景颜色，全局通用，默认为#fff
+            imageUpload: true,
+            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL: "./php/upload.php",
+            onload: function () {
+                console.log('onload', this);
+                //this.fullscreen();
+                //this.unwatch();
+                //this.watch().fullscreen();
+                //this.setMarkdown("#PHP");
+                //this.width("100%");
+                //this.height(480);
+                //this.resize("100%", 640);
+            }
+        });
+        // editor.gotoLine(90);//转到第90行
+
+        // editor.show();//显示编辑器
+
+        // editor.hide();//隐藏编辑器
+
+        // alert(editor.getMarkdown());//获取编辑器内容（不含html）
+        //
+        // alert(editor.getHTML());//获取编辑器html内容
+
+        // editor.watch();//开启双窗口对比
+
+        editor.unwatch();//取消双窗口对比
+
+        editor.previewing();//预览效果
+
+        editor.fullscreen();//全屏（按ESC取消）
+
+        editor.showToolbar();//显示工具栏
+
+        // editor.hideToolbar();//隐藏工具栏
+
+        editor.config({
+            tocDropdown: true,
+            tocTitle: "目录 Table of Contents",
+        });//TOC下拉菜单
+
+        editor.config("tocDropdown", false);//TOC默认   
     });
 </script>
 </body>

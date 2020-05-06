@@ -21,6 +21,6 @@ public interface ReplyDao extends BaseMapper<Reply> {
      * @param artId 文章id
      * @return 回复列表
      */
-    @Select("select r.tid,u.nickname,u.uid,u.tximg,r.content,r.tiDate,r.`like`,r.artId,r.parentId,r.replyId from reply r join user u on r.uid = u.uid where artId=#{artId} order by r.tiDate desc limit #{page},10")
-    List<Reply> replyList(@Param("artId") long artId,@Param("page") Integer page);
+    @Select("select r.tid,u.nickname,u.uid,u.tximg,r.content,r.tiDate,r.`like`,r.artId,r.parentId,r.replyId from reply r join user u on r.uid = u.uid where artId=#{artId} order by r.tiDate desc")
+    List<Reply> replyList(@Param("artId") long artId);
 }

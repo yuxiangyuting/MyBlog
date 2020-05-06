@@ -69,7 +69,6 @@ public class UserController extends ApiController {
      */
     @GetMapping("searchUserInfo")
     public R searchUserInfo(Integer uid) {
-        System.out.println("uid=" + uid);
         if (uid == null) {
             uid = 1;
         }

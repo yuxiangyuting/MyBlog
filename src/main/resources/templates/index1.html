@@ -21,135 +21,120 @@
         <a class="close-notice" href="javascript:;" onclick="closeNotice();"><i class="fa fa-times"
                                                                                 aria-hidden="true"></i></a>
     </div>
-    <div class="p-content-box-articleList-box " id="essays">
+    <div id="TopArticle"  class="p-content-box-articleList-box ">
         <!-- 置顶文章start -->
-        <div id="TopArticle">
-            <div v-for="(a,index) in TopArticle" :key="index" class="p-content-box-article-box">
+        <div v-for="(a,index) in TopArticle" :key="index" class="p-content-box-article-box">
+            <!--缩略图获取方式-->
+            <a v-if="index%2!=1" :href="'article.html?artid='+a.artid" class="pjax">
+                <div class="p-article-thumb"
+                     :style="'background-image: url('+a.image+')'">
+                </div>
+            </a>
+            <div class="p-article-brief-box">
+                <h2 class="p-article-title">
+                    <span class="p-article-top">置顶</span>
+                    <a :href="'article.html?artid='+a.artid" class="pjax">
+                        {{a.title}}
+                    </a>
+                </h2>
+                <p class="p-article-content">
+                    <vue-markdown>{{a.content}}</vue-markdown>
+                </p>
+                <hr>
+                <div class="p-article-msg">
+                    <span class="p-article-msg-btn"><i class="fa fa-user-o" aria-hidden="true"></i> perfree</span>
+                    <span class="p-article-msg-btn"> <i class="fa fa-eye"
+                                                        aria-hidden="true"></i> {{a.pageView}}浏览 </span>
+                    <span class="p-article-msg-btn"> <i class="fa fa-comment-o"
+                                                        aria-hidden="true"></i> 34条评论 </span>
+                    <span class="p-article-msg-btn"> <i class="fa fa-clock-o"
+                                                        aria-hidden="true"></i> {{a.pushDate}} </span>
+                    <a :href="'article.html?artid='+a.artid" class="p-article-msg-all-btn pjax">阅读全文</a>
+                </div>
+            </div>
+        </div>
+        <!-- 置顶文章end -->
+        <!--文章列表start-->
+        <div v-for="(a,index) in NoTopArticle" :key="index" class="p-content-box-article-box">
+            <div class="p-article-brief-box">
                 <!--缩略图获取方式-->
                 <a v-if="index%2!=1" :href="'article.html?artid='+a.artid" class="pjax">
                     <div class="p-article-thumb"
                          :style="'background-image: url('+a.image+')'">
                     </div>
                 </a>
-                <div class="p-article-brief-box">
-                    <h2 class="p-article-title">
-                        <span class="p-article-top">置顶</span>
-                        <a :href="'article.html?artid='+a.artid" class="pjax">
-                            {{a.title}}
-                        </a>
-                    </h2>
-                    <p class="p-article-content">
-                        <vue-markdown>{{a.content}}</vue-markdown>
-                    </p>
-                    <hr>
-                    <div class="p-article-msg">
-                        <span class="p-article-msg-btn"><i class="fa fa-user-o" aria-hidden="true"></i> perfree</span>
-                        <span class="p-article-msg-btn"> <i class="fa fa-eye" aria-hidden="true"></i> {{a.pageView}}浏览 </span>
-                        <span class="p-article-msg-btn"> <i class="fa fa-comment-o"
-                                                            aria-hidden="true"></i> 34条评论 </span>
-                        <span class="p-article-msg-btn"> <i class="fa fa-clock-o"
-                                                            aria-hidden="true"></i> {{a.pushDate}} </span>
-                        <a :href="'article.html?artid='+a.artid" class="p-article-msg-all-btn pjax">阅读全文</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- 置顶文章end -->
-        <!--文章列表start-->
-        <div id="NoTopArticle">
-            <div v-for="(a,index) in NoTopArticle" :key="index" class="p-content-box-article-box">
-                <div class="p-article-brief-box">
-                    <!--缩略图获取方式-->
-                    <a v-if="index%2!=1" :href="'article.html?artid='+a.artid" class="pjax">
-                        <div class="p-article-thumb"
-                             :style="'background-image: url('+a.image+')'">
-                        </div>
+                <h2 class="p-article-title">
+                    <a :href="'article.html?artid='+a.artid" class="pjax">
+                        {{a.title}}
                     </a>
-                    <h2 class="p-article-title">
-                        <a :href="'article.html?artid='+a.artid" class="pjax">
-                            {{a.title}}
-                        </a>
-                    </h2>
-                    <p class="p-article-content">
-                        <vue-markdown>{{a.content}}</vue-markdown>
-                    </p>
-                    <hr>
-                    <div class="p-article-msg">
-                        <span class="p-article-msg-btn"><i class="fa fa-user-o" aria-hidden="true"></i> perfree</span>
-                        <span class="p-article-msg-btn"> <i class="fa fa-eye"
-                                                            aria-hidden="true"></i> {{a.pageView}}浏览 </span>
-                        <span class="p-article-msg-btn"> <i class="fa fa-comment-o"
-                                                            aria-hidden="true"></i> 34条评论 </span>
-                        <span class="p-article-msg-btn"> <i class="fa fa-clock-o"
-                                                            aria-hidden="true"></i> {{a.pushDate}} </span>
-                        <a :href="'article.html?artid='+a.artid" class="p-article-msg-all-btn pjax">阅读全文</a>
-                    </div>
+                </h2>
+                <p class="p-article-content">
+                    <vue-markdown>{{a.content}}</vue-markdown>
+                </p>
+                <hr>
+                <div class="p-article-msg">
+                    <span class="p-article-msg-btn"><i class="fa fa-user-o" aria-hidden="true"></i> perfree</span>
+                    <span class="p-article-msg-btn"> <i class="fa fa-eye"
+                                                        aria-hidden="true"></i> {{a.pageView}}浏览 </span>
+                    <span class="p-article-msg-btn"> <i class="fa fa-comment-o"
+                                                        aria-hidden="true"></i> 34条评论 </span>
+                    <span class="p-article-msg-btn"> <i class="fa fa-clock-o"
+                                                        aria-hidden="true"></i> {{a.pushDate}} </span>
+                    <a :href="'article.html?artid='+a.artid" class="p-article-msg-all-btn pjax">阅读全文</a>
                 </div>
             </div>
         </div>
-        <script
-                src="https://v1.hitokoto.cn/?encode=js&amp;select=%23hitokoto"
-                defer
-        ></script>
     </div>
-    <!--    <div class="p-layout-right-btn">-->
-    <!--        <a class="go-top"><i class="fa fa-caret-up" aria-hidden="true"></i></a>-->
-    <!--    </div>-->
-    <script src="https://v1.hitokoto.cn/?encode=js&amp;select=%23hitokoto" defer></script>
-    <script type="text/javascript" src="static/plugins/pjax/pjax.js"></script>
-    <script type="text/javascript" src="static/plugins/layui/layui.js"></script>
-    <script type="text/javascript" src="static/plugins/skplayer/skPlayer.js"></script>
-    <script src="static/js/index.js"></script>
-    <script src="static/js/vue.js"></script>
-    <script src="static/plugins/node_modules/axios/dist/axios.js"></script>
-    <script src="static/plugins/node_modules/vue-markdown/dist/vue-markdown.js"></script>
-    <script>
-        Vue.use(VueMarkdown);
-        new Vue({
-            el: "#TopArticle",
-            data: {
-                TopArticle: "",
-            },
-            mounted() {
-                let uid = localStorage.getItem("uid");
-                if (uid === null||uid===undefined) {
-                    uid = 1;
+</div>
+<!--    <div class="p-layout-right-btn">-->
+<!--        <a class="go-top"><i class="fa fa-caret-up" aria-hidden="true"></i></a>-->
+<!--    </div>-->
+<script type="text/javascript" src="static/plugins/pjax/pjax.js"></script>
+<script type="text/javascript" src="static/plugins/layui/layui.js"></script>
+<script type="text/javascript" src="static/plugins/skplayer/skPlayer.js"></script>
+<script src="static/js/index.js"></script>
+<script src="static/js/vue.js"></script>
+<script src="static/plugins/node_modules/axios/dist/axios.js"></script>
+<script src="static/plugins/node_modules/vue-markdown/dist/vue-markdown.js"></script>
+<script>
+    Vue.use(VueMarkdown);
+    new Vue({
+        el: "#TopArticle",
+        data: {
+            TopArticle: "",
+            NoTopArticle: "",
+        },
+        mounted() {
+            let uid;
+            if (localStorage.getItem("uid") !== null) {
+                uid = parseInt(localStorage.getItem("uid"));
+            } else {
+                uid = 1;
+            }
+            const url = "http://localhost:8081/article/selectTopArticleByUid";
+            axios.get(url, {
+                params: {
+                    uid: uid
                 }
-                const url = "http://localhost:8081/article/selectTopArticleByUid";
-                axios.get(url, {
-                    params: {
-                        uid: uid
-                    }
-                }).then((response) => {
-                    const result = response.data;
-                    this.TopArticle = result;
-                }).catch((error) => {
-                    alert("失败");
-                });
-            },
-        });
-    </script>
-    <script>
-        new Vue({
-            el: "#NoTopArticle",
-            data: {
-                NoTopArticle: "",
-            },
-            mounted() {
-                const uid = localStorage.getItem("uid");
-                const url = "http://localhost:8081/article/selectNoTopArticleByUid";
-                axios.get(url, {
-                    params: {
-                        uid: uid,
-                    }
-                }).then((response) => {
-                    const result = response.data;
-                    this.NoTopArticle = result;
-                }).catch((error) => {
-                    alert("失败");
-                });
-            },
-        });
-    </script>
+            }).then((response) => {
+                const result = response.data;
+                this.TopArticle = result;
+            }).catch((error) => {
+                alert("失败");
+            });
+            const url2 = "http://localhost:8081/article/selectNoTopArticleByUid";
+            axios.get(url2, {
+                params: {
+                    uid: uid,
+                }
+            }).then((response) => {
+                const result = response.data;
+                this.NoTopArticle = result;
+            }).catch((error) => {
+                alert("失败");
+            });
+        },
+    });
+</script>
 </body>
 </html>

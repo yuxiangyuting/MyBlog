@@ -1,16 +1,12 @@
 package com.wei.controller;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.ApiController;
-import com.baomidou.mybatisplus.extension.api.R;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wei.entity.Reply;
 import com.wei.service.ReplyService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -30,7 +26,7 @@ public class ReplyController extends ApiController {
     private ReplyService replyService;
 
     @RequestMapping("commentSystem")
-    public List<Reply> commentSystem(long artId,Integer page) {
-        return this.replyService.commentSystem(artId,page);
+    public List<Reply> commentSystem(long artId) {
+        return this.replyService.commentSystem(artId);
     }
 }

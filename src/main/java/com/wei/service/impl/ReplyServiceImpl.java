@@ -21,9 +21,9 @@ import java.util.Map;
 public class ReplyServiceImpl extends ServiceImpl<ReplyDao, Reply> implements ReplyService {
 
     @Override
-    public List<Reply> commentSystem(long artId,Integer page) {
+    public List<Reply> commentSystem(long artId) {
         //获取所有评论包括父级子级评论
-        List<Reply> all = getBaseMapper().replyList(artId,page);
+        List<Reply> all = getBaseMapper().replyList(artId);
         List<Reply> result = new ArrayList<>();
         //第一次遍历将父级评论取出放到一个新的list集合里，同时将评论唯一标识tid当做key放入一个map里，值是当前遍历的评论对象
         for (Reply c : all) {

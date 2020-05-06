@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="static/plugins/skplayer/skPlayer.min.css" media="all"/>
     <link rel="dns-prefetch" href="//cdn.bootcss.com"/>
     <link rel="stylesheet" href="static/plugins/highlight/styles/vs.css" media="all"/>
+    <link rel="stylesheet" href="static/plugins/node_modules/mavon-editor/dist/css/index.css">
     <script type="text/javascript" src="static/plugins/jquery/jquery-3.2.1.min.js"></script>
 </head>
 <body id="body">
@@ -188,6 +189,7 @@
 }</script>
 <script src="static/js/vue.js"></script>
 <script src="static/plugins/node_modules/axios/dist/axios.js"></script>
+<script src="static/plugins/node_modules/mavon-editor/dist/mavon-editor.js"></script>
 <script>
     new Vue({
         el: "#userInfo",
@@ -195,8 +197,10 @@
             userInfo: ""
         },
         mounted() {
-            let uid = parseInt(localStorage.getItem("uid"));
-            if (uid === undefined || uid === null) {
+            let uid;
+            if (localStorage.getItem("uid") !== null) {
+                uid = parseInt(localStorage.getItem("uid"));
+            } else {
                 uid = 1;
             }
             const url = "http://localhost:8081/user/searchUserInfo";
@@ -218,11 +222,11 @@
     });
     new Vue({
         el: ".p-right-tag-cloud", data: {tag: "",}, mounted() {
-            let a = localStorage.getItem("uid");
-            if (a === undefined || a === null) {
-                let uid  = 1;
+            let uid;
+            if (localStorage.getItem("uid") !== null) {
+                uid = parseInt(localStorage.getItem("uid"));
             } else {
-                let uid = parseInt(a);
+                uid = 1;
             }
             const url = "http://localhost:8081/usertag/selectTagByUid";
             axios.get(url, {

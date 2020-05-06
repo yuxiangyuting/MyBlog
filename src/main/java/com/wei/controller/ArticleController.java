@@ -28,16 +28,25 @@ public class ArticleController extends ApiController {
 
     @RequestMapping("selectByArtId")
     public ArticleVo selectByArtId(Integer artId) {
+        if (artId == null) {
+            artId = 1;
+        }
         return articleService.selectByArtId(artId);
     }
 
     @GetMapping("selectTopArticleByUid")
     public List<Article> selectTopArticleByUid(Integer uid) {
+        if (uid == null) {
+            return findAllTopArticle();
+        }
         return articleService.selectTopArticleByUid(uid);
     }
 
     @GetMapping("selectNoTopArticleByUid")
     public List<Article> selectNoTopArticleByUid(Integer uid) {
+        if (uid == null) {
+           return findAllNoTopArticle();
+        }
         return articleService.selectNoTopArticleByUid(uid);
     }
 
