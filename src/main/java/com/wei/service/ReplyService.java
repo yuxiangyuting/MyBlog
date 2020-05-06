@@ -18,5 +18,5 @@ public interface ReplyService extends IService<Reply> {
      * @param artId 文章id
      * @return 评论和回复列表
      */
-    List<Reply> commentSystem(long artId);
+    List<Reply> commentSystem(long artId,Integer page);
 }

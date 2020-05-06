@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wei.entity.Reply;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 /**
@@ -20,6 +21,6 @@ public interface ReplyDao extends BaseMapper<Reply> {
      * @param artId 文章id
      * @return 回复列表
      */
-    @Select("select r.tid,u.nickname,u.uid,u.tximg,r.content,r.tiDate,r.`like`,r.artId,r.parentId,r.replyId from reply r join user u on r.uid = u.uid where artId=#{artId}")
-    List<Reply> replyList(long artId);
+    @Select("select r.tid,u.nickname,u.uid,u.tximg,r.content,r.tiDate,r.`like`,r.artId,r.parentId,r.replyId from reply r join user u on r.uid = u.uid where artId=#{artId} order by r.tiDate desc limit #{page},10")
+    List<Reply> replyList(@Param("artId") long artId,@Param("page") Integer page);
 }

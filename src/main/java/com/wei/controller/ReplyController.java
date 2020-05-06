@@ -30,7 +30,7 @@ public class ReplyController extends ApiController {
     private ReplyService replyService;
 
     @RequestMapping("commentSystem")
-    public List<Reply> commentSystem(long artId) {
-        return this.replyService.commentSystem(artId);
+    public List<Reply> commentSystem(long artId,Integer page) {
+        return this.replyService.commentSystem(artId,page);
     }
 }
