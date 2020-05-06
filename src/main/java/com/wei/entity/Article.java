@@ -25,11 +25,11 @@ public class Article extends Model<Article> {
     /**
      * 文章id
      */
-    private Integer artid;
+    private long artid;
     /**
      * 用户id
      */
-    private Integer uid;
+    private long uid;
     /**
      * 封面图片
      */
@@ -49,7 +49,7 @@ public class Article extends Model<Article> {
     /**
      * 浏览量
      */
-    private Integer pageView;
+    private long pageView;
     /**
      * 是否置顶
      */

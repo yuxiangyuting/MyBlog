@@ -1,98 +1,76 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title>登录到用户中心</title>
-    <meta
-      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-      name="viewport"
-    />
-    <link
-      rel="stylesheet"
-      href="static/components/bootstrap/css/bootstrap.min.css"
-    />
-
-    <link rel="stylesheet" href="static/adminlte/css/AdminLTE.min.css" />
-    <style>
-      .login-page {
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+    <link rel="stylesheet" href="static/components/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="static/adminlte/css/AdminLTE.min.css"/>
+    <link rel="stylesheet" href="static/plugins/layui/css/layui.css">
+    <script src="static/plugins/layui/layui.js"></script>
+    <style> .login-page {
         background-image: url("static/commons/img/loginbg.png");
         background-size: cover;
-      }
+    }
 
-      .login-box {
+    .login-box {
         padding-top: 100px;
-      }
+    }
 
-      .form-group {
+    .form-group {
         text-align: left;
-      }
-    </style>
-  </head>
-  <body class="hold-transition login-page">
-    <div class="row">
-      <div class="login-box text-center">
+    }</style>
+</head>
+<body class="hold-transition login-page">
+<div class="row">
+    <div class="login-box text-center">
         <div class="login-box-body">
-          <form id="login">
-            <div class="form-group">
-              <label>账号</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="请输入账号或邮箱"
-                name="user"
-              />
-            </div>
-            <div class="form-group">
-              <label>密码</label>
-              <input
-                type="password"
-                class="form-control"
-                placeholder="及密码..."
-                name="pwd"
-              />
-            </div>
-            <div class="row">
-              <div class="col-xs-12" style="padding-top: 15px;">
-                <input
-                  type="button"
-                  class="btn btn-primary btn-block btn-flat"
-                  @click="login"
-                  value="登 录"
-                />
-                <p class="help-block" style="float: left;">
-                  还没有账号？点击 <a href="register.html">这里</a> 注册。
-                </p>
-              </div>
-            </div>
-          </form>
+            <form id="login">
+                <div class="form-group"><label>账号</label><input type="text" class="form-control" placeholder="请输入账号或邮箱"
+                                                                name="username"/></div>
+                <div class="form-group"><label>密码</label><input type="password" class="form-control"
+                                                                placeholder="及密码..." name="password"/></div>
+                <div class="row">
+                    <div class="col-xs-12" style="padding-top: 15px;"><input type="button"
+                                                                             class="btn btn-primary btn-block btn-flat"
+                                                                             @click="login" value="登 录"/>
+                        <p class="help-block" style="float: left;">还没有账号？点击 <a href="register.html">这里</a> 注册。</p></div>
+                </div>
+            </form>
         </div>
-      </div>
     </div>
-    <script src="static/js/vue.js"></script>
-    <script src="static/plugins/node_modules/axios/dist/axios.js"></script>
-    <script>
-      new Vue({
-        el: "#login",
-        data: {
-          res: "",
-        },
-        methods: {
-          login() {
-            const url = "http://localhost:8081/tag/findAll";
-            axios
-              .get(url)
-              .then((response) => {
+</div>
+<script src="static/plugins/jquery/jquery-3.2.1.min.js"></script>
+<script src="static/js/vue.js"></script>
+<script src="static/plugins/node_modules/axios/dist/axios.js"></script>
+<script> new Vue({
+    el: "#login", methods: {
+        login() {
+            const url = "http://localhost:8081/user/login";
+            axios.post(url, $("#login").serialize()).then((response) => {
                 const result = response.data;
-                this.res = result;
-                alert("成功！" + result);
-              })
-              .catch((error) => {
-                alert("失败");
-              });
-          },
+                if (result.data !== null) {
+                    const res = result.data;
+                    console.log(res);
+                    localStorage.setItem("uid", res.uid);
+                    layer.msg("登录成功！", {icon: 1});
+                    setTimeout(function () {
+                        location.href = 'index.html';
+                    }, 1200)
+                } else {
+                    layer.msg("请检查账号或者密码是否正确！！", {icon: 2})
+                }
+            }).catch((error) => {
+                layer.msg("连接服务器失败！", {icon: 2})
+            });
         },
-      });
-    </script>
-  </body>
+    },
+});</script>
+<script>
+    layui.use(['layer'], function () {
+        layer = layui.layer;
+    })
+</script>
+</body>
 </html>

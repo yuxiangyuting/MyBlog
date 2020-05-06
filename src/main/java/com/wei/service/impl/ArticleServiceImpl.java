@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wei.dao.ArticleDao;
 import com.wei.entity.Article;
+import com.wei.entity.vo.ArticleVo;
 import com.wei.service.ArticleService;
 import org.springframework.stereotype.Service;
 
@@ -20,26 +21,14 @@ import java.util.List;
 public class ArticleServiceImpl extends ServiceImpl<ArticleDao, Article> implements ArticleService {
 
     /**
-     * 查询所有文章内容 根据时间排序
-     *
-     * @return 所有文章
-     */
-    @Override
-    public List<Article> findAll() {
-        return getBaseMapper().findAll();
-    }
-
-    /**
      * 通过id查询文章
      *
      * @param artId 文章id
      * @return 文章对象
      */
     @Override
-    public Article selectByArtId(Integer artId) {
-        QueryWrapper<Article> wrapper = new QueryWrapper<>();
-        wrapper.eq("artId", artId);
-        Article article = getBaseMapper().selectOne(wrapper);
+    public ArticleVo selectByArtId(long artId) {
+        ArticleVo article = getBaseMapper().selectByArtId(artId);
         try {
             FileReader reader = new FileReader(article.getContent());
             StringBuffer sb = new StringBuffer();
@@ -63,7 +52,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleDao, Article> impleme
      * @return 文章集合
      */
     @Override
-    public List<Article> selectTopArticleByUid(Integer uid) {
+    public List<Article> selectTopArticleByUid(long uid) {
         QueryWrapper<Article> wrapper = new QueryWrapper<>();
         wrapper.and(i -> i.eq("uid", uid).and(j -> j.eq("top", 1)));
         List<Article> articles = getBaseMapper().selectList(wrapper);
@@ -97,7 +86,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleDao, Article> impleme
      * @return 文章集合
      */
     @Override
-    public List<Article> selectNoTopArticleByUid(Integer uid) {
+    public List<Article> selectNoTopArticleByUid(long uid) {
         QueryWrapper<Article> wrapper = new QueryWrapper<>();
         wrapper.and(i -> i.eq("uid", uid).and(j -> j.eq("top", 0)));
         List<Article> articles = getBaseMapper().selectList(wrapper);
@@ -144,5 +133,61 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleDao, Article> impleme
         }
         article.setContent("src/main/resources/userData/" + article.getUid() + "/article/" + article.getArtid() + "/" + article.getTitle() + ".md");
         return getBaseMapper().insert(article) > 0;
+    }
+
+    @Override
+    public List<Article> findAllTopArticle() {
+        QueryWrapper<Article> wrapper = new QueryWrapper<>();
+        wrapper.eq("top", 1);
+        List<Article> articles = getBaseMapper().selectList(wrapper);
+        FileReader reader = null;
+        StringBuffer sb = null;
+        char[] world = null;
+        try {
+            for (Article article : articles) {
+                reader = new FileReader(article.getContent());
+                sb = new StringBuffer();
+                world = new char[8];
+                int a = reader.read(world);
+                while (a != -1) {
+                    sb.append(world);
+                    a = reader.read(world);
+                }
+                String str = sb.substring(0, 60);
+                article.setContent(str);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return articles;
+    }
+
+    @Override
+    public List<Article> findAllNoTopArticle() {
+        QueryWrapper<Article> wrapper = new QueryWrapper<>();
+        wrapper.eq("top", 0);
+        List<Article> articles = getBaseMapper().selectList(wrapper);
+        FileReader reader = null;
+        StringBuffer sb = null;
+        char[] world = null;
+        try {
+            for (Article article : articles) {
+                reader = new FileReader(article.getContent());
+                sb = new StringBuffer();
+                world = new char[8];
+                int a = reader.read(world);
+                while (a != -1) {
+                    sb.append(world);
+                    a = reader.read(world);
+                }
+                String str = sb.substring(0, 60);
+                article.setContent(str);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return articles;
     }
 }

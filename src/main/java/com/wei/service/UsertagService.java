@@ -21,5 +21,5 @@ public interface UsertagService extends IService<Usertag> {
      * @param uid 作者id
      * @return 标签集合
      */
-    List<UsertagVo> selectTagByUid(Integer uid);
+    List<UsertagVo> selectTagByUid(long uid);
 }

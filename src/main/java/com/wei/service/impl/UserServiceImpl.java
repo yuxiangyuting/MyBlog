@@ -3,12 +3,10 @@ package com.wei.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wei.dao.UserDao;
-import com.wei.entity.Tag;
 import com.wei.entity.User;
+import com.wei.entity.vo.UserVo;
 import com.wei.service.UserService;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * (User)表服务实现类
@@ -48,6 +46,11 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
         return getBaseMapper().regsitered(user) > 0;
     }
 
+    @Override
+    public UserVo searchUserByNickname(String nickname) {
+        return getBaseMapper().searchUserInfoByNickname(nickname);
+    }
+
     /**
      * 通过用户名查询用户信息
      *
@@ -55,9 +58,8 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
      * @return 用户信息
      */
     @Override
-    public User searchUserByUid(Integer uid) {
-        QueryWrapper<User> wrapper = new QueryWrapper<>();
-        wrapper.eq("uid", uid);
-        return getBaseMapper().selectOne(wrapper);
+    public UserVo searchUserInfo(long uid) {
+        return getBaseMapper().searchUserInfo(uid);
     }
+
 }

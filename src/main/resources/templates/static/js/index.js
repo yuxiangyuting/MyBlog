@@ -3,10 +3,6 @@
 
 /**渐变色背景
  "*/
-layui.use(['layer'], function () {
-  layer=layui.layer;
-
-});
 $("#body").css(
     "background-image",
     "linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%)"
@@ -37,6 +33,7 @@ $(function () {
         );
     })();
     init();
+
     function init() {
         css(
             ".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: absolute;}.heart:after{top: -5px;}.heart:before{left: -5px;}"
@@ -137,6 +134,7 @@ var pjax = new Pjax({
 function closeNotice() {
     $(".p-notice-box").hide();
 }
+
 var chakhsu = function (r) {
     function t() {
         return b[Math.floor(Math.random() * b.length)];
@@ -165,19 +163,19 @@ var chakhsu = function (r) {
         c.step
             ? c.step--
             : ((c.step = g),
-            c.prefixP < l.length
-                ? (c.prefixP >= 0 && (c.text += l[c.prefixP]),
-                c.prefixP++)
-                : "forward" === c.direction
-                ? c.skillP < t.length
-                ? ((c.text += t[c.skillP]), c.skillP++)
-                : c.delay
-                ? c.delay--
-                : ((c.direction = "backward"), (c.delay = a))
-                : c.skillP > 0
-                ? ((c.text = c.text.slice(0, -1)), c.skillP--)
-                : ((c.skillI = (c.skillI + 1) % o.length),
-                (c.direction = "forward"))),
+                c.prefixP < l.length
+                    ? (c.prefixP >= 0 && (c.text += l[c.prefixP]),
+                        c.prefixP++)
+                    : "forward" === c.direction
+                    ? c.skillP < t.length
+                        ? ((c.text += t[c.skillP]), c.skillP++)
+                        : c.delay
+                            ? c.delay--
+                            : ((c.direction = "backward"), (c.delay = a))
+                    : c.skillP > 0
+                        ? ((c.text = c.text.slice(0, -1)), c.skillP--)
+                        : ((c.skillI = (c.skillI + 1) % o.length),
+                            (c.direction = "forward"))),
             (r.textContent = c.text),
             r.appendChild(
                 n(
@@ -190,7 +188,7 @@ var chakhsu = function (r) {
     }
 
     var l = "♥",
-        o = ["简简单单的生活,安安静静的写博客"].map(function (r) {
+        o = ["天下皆白，唯我独黑"].map(function (r) {
             return r + "";
         }),
         a = 2,
@@ -248,6 +246,7 @@ chakhsu(document.getElementById("chakhsu"));
         );
     })();
     init();
+
     function init() {
         css(
             ".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: absolute;}.heart:after{top: -5px;}.heart:before{left: -5px;}"
@@ -321,7 +320,7 @@ chakhsu(document.getElementById("chakhsu"));
             "rgb(" + ~~(Math.random() * 255) +
             "," + ~~(Math.random() * 255) +
             "," + ~~(Math.random() * 255) +
-            ")" 
+            ")"
         );
     }
 })(window, document);

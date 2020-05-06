@@ -1,6 +1,5 @@
 package com.wei.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wei.dao.TagDao;
 import com.wei.entity.Tag;

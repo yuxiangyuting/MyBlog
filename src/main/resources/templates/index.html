@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="static/plugins/skplayer/skPlayer.min.css" media="all"/>
     <link rel="dns-prefetch" href="//cdn.bootcss.com"/>
     <link rel="stylesheet" href="static/plugins/highlight/styles/vs.css" media="all"/>
+    <link rel="stylesheet" href="static/plugins/node_modules/mavon-editor/dist/css/index.css">
     <script type="text/javascript" src="static/plugins/jquery/jquery-3.2.1.min.js"></script>
 </head>
 <body id="body">
@@ -26,53 +27,62 @@
 <div style="display: none;" id="hitokoto"></div>
 <div class="p-box">
     <div class="p-left-box">
-        <div class="p-left-box-2">
-            <div class="p-left-logo-box"><a class="p-left-logo-box-text pjax" href="/"><i class="fa fa-snowflake-o"></i><span
-                    class="p-left-logo-box-text-name">Zeit丶浅白</span></a></div>
-            <div class="p-left-user-box"><a class="p-left-user-img-box pjax" href="/"><img
-                    src="../userData/lmz123/info/txImg/tx.jpg"/></a><a class="p-left-user-name-box pjax" href="/"><span>&nbsp;</span></a>
-                <p>LV：<span>超星</span></p>
-                <p>学龄：<span>2</span>年</p>
-                <p>博数：<span>350</span>年</p></a>
-                <div class="p-left-user-hitokoto-box"><span class="text-muted text-xs block"><div
-                        id="chakhsu"></div></span></div>
-            </div>
-            <hr class="layui-bg-black"/><!--左侧菜单start-->
-            <div class="p-left-menu-box">
-                <ul class="layui-nav layui-nav-tree" lay-filter="left-side">
-                    <li class="layui-nav-item" lay-unselect><a href="" onclick="setPageSrc('index1.html')"
-                                                               class="nav-menu-a p-nav-menu-btn pjax" target="_self"><i
-                            class="fa fa-home fa-fw"></i><span class="p-left-menu-nav-txt">Blog首页</span></a></li>
-                    <li class="layui-nav-item" lay-unselect><a href="" onclick="setPageSrc('time.html')"
-                                                               class="nav-menu-a p-nav-menu-btn pjax" target="_self"><i
-                            class="fa fa-clock-o fa-fw"></i><span class="p-left-menu-nav-txt">文章归档</span></a></li>
-                    <li class="layui-nav-item" lay-unselect><a href="" onclick="setPageSrc('category.html')"
-                                                               class="nav-menu-a p-nav-menu-btn pjax" target="_self"><i
-                            class="fa fa-bars fa-fw"></i><span class="p-left-menu-nav-txt">文章分类</span></a></li>
-                    <li class="layui-nav-item" lay-unselect><a href="" onclick="setPageSrc('photoList.html')"
-                                                               class="nav-menu-a p-nav-menu-btn pjax" target="_self"><i
-                            class="fa fa-image fa-fw"></i><span class="p-left-menu-nav-txt">我的相册</span></a></li>
-                    <li class="layui-nav-item" lay-unselect><a href="" onclick="setPageSrc('link.html')"
-                                                               class="nav-menu-a p-nav-menu-btn pjax" target="_self"><i
-                            class="fa fa-user-o fa-fw"></i><span class="p-left-menu-nav-txt">我的朋友</span></a></li>
-                    <li class="layui-nav-item" lay-unselect><a href="" onclick="setPageSrc('time.html')"
-                                                               class="nav-menu-a p-nav-menu-btn pjax" target="_self"><i
-                            class="fa fa-clock-o fa-fw"></i><span class="p-left-menu-nav-txt">学习计划</span></a></li>
-                </ul>
-            </div><!--左侧菜单end-->
-            <hr class="layui-bg-black"/><!-- 左侧导航底部社交按钮start -->
-            <div class="p-left-bottom-box">
-                <div class="p-l-b-content layui-clear"><a class="p-l-b-btn" href="http://weibo.com/gbcxf"
-                                                          target="_blank" title="微博"><span class="p-l-b-btn-icon"><i
-                        class="fa fa-weibo" aria-hidden="true"></i></span><span class="p-l-b-btn-name">微博</span></a><a
-                        class="p-l-b-btn" href="https://github.com/perfree" target="_blank" title="GitHub"><span
-                        class="p-l-b-btn-icon"><i class="fa fa-github" aria-hidden="true"></i></span><span
-                        class="p-l-b-btn-name">GitHub</span></a><a class="p-l-b-btn"
-                                                                   href="http://www.jpress.yinpengfei.com/attachment/20190605/af8f6fa8de17421ea73eae37917f1924.jpg"
-                                                                   target="_blank" title="微信"><span
-                        class="p-l-b-btn-icon"><i class="fa fa-weixin" aria-hidden="true"></i></span><span
-                        class="p-l-b-btn-name">微信</span></a></div>
-            </div><!-- 左侧导航底部社交按钮end --></div>
+        <div id="userInfo">
+            <div class="p-left-box-2">
+                <div class="p-left-logo-box"><a class="p-left-logo-box-text pjax" href="/"><i
+                        class="fa fa-snowflake-o"></i>&nbsp;{{userInfo.nickname}}<span
+                        class="p-left-logo-box-text-name"></span></a></div>
+                <div class="p-left-user-box"><a class="p-left-user-img-box pjax" href="/"><img
+                        :src="userInfo.tximg"/></a><a class="p-left-user-name-box pjax" href="/"><span>&nbsp;</span></a>
+                    <p>LV：<span>超星</span></p>
+                    <p>学龄：<span>{{userInfo.regtime}}</span>&nbsp;天</p>
+                    <p>博数：<span>{{userInfo.acount}}</span>&nbsp;篇</p></a>
+                    <div class="p-left-user-hitokoto-box"><span class="text-muted text-xs block"><div
+                            id="chakhsu"></div></span></div>
+                </div>
+                <hr class="layui-bg-black"/><!--左侧菜单start-->
+                <div class="p-left-menu-box">
+                    <ul class="layui-nav layui-nav-tree" lay-filter="left-side">
+                        <li class="layui-nav-item" lay-unselect><a href="" onclick="setPageSrc('index1.html')"
+                                                                   class="nav-menu-a p-nav-menu-btn pjax"
+                                                                   target="_self"><i
+                                class="fa fa-home fa-fw"></i><span class="p-left-menu-nav-txt">Blog首页</span></a></li>
+                        <li class="layui-nav-item" lay-unselect><a href="" onclick="setPageSrc('time.html')"
+                                                                   class="nav-menu-a p-nav-menu-btn pjax"
+                                                                   target="_self"><i
+                                class="fa fa-clock-o fa-fw"></i><span class="p-left-menu-nav-txt">文章归档</span></a></li>
+                        <li class="layui-nav-item" lay-unselect><a href="" onclick="setPageSrc('category.html')"
+                                                                   class="nav-menu-a p-nav-menu-btn pjax"
+                                                                   target="_self"><i
+                                class="fa fa-bars fa-fw"></i><span class="p-left-menu-nav-txt">文章分类</span></a></li>
+                        <li class="layui-nav-item" lay-unselect><a href="" onclick="setPageSrc('photoList.html')"
+                                                                   class="nav-menu-a p-nav-menu-btn pjax"
+                                                                   target="_self"><i
+                                class="fa fa-image fa-fw"></i><span class="p-left-menu-nav-txt">我的相册</span></a></li>
+                        <li class="layui-nav-item" lay-unselect><a href="" onclick="setPageSrc('link.html')"
+                                                                   class="nav-menu-a p-nav-menu-btn pjax"
+                                                                   target="_self"><i
+                                class="fa fa-user-o fa-fw"></i><span class="p-left-menu-nav-txt">我的朋友</span></a></li>
+                        <li class="layui-nav-item" lay-unselect><a href="" onclick="setPageSrc('time.html')"
+                                                                   class="nav-menu-a p-nav-menu-btn pjax"
+                                                                   target="_self"><i
+                                class="fa fa-clock-o fa-fw"></i><span class="p-left-menu-nav-txt">学习计划</span></a></li>
+                    </ul>
+                </div><!--左侧菜单end-->
+                <hr class="layui-bg-black"/><!-- 左侧导航底部社交按钮start -->
+                <div class="p-left-bottom-box">
+                    <div class="p-l-b-content layui-clear"><a class="p-l-b-btn" href="http://weibo.com/gbcxf"
+                                                              target="_blank" title="微博"><span class="p-l-b-btn-icon"><i
+                            class="fa fa-weibo" aria-hidden="true"></i></span><span class="p-l-b-btn-name">微博</span></a><a
+                            class="p-l-b-btn" href="https://github.com/perfree" target="_blank" title="GitHub"><span
+                            class="p-l-b-btn-icon"><i class="fa fa-github" aria-hidden="true"></i></span><span
+                            class="p-l-b-btn-name">GitHub</span></a><a class="p-l-b-btn"
+                                                                       href="http://www.jpress.yinpengfei.com/attachment/20190605/af8f6fa8de17421ea73eae37917f1924.jpg"
+                                                                       target="_blank" title="微信"><span
+                            class="p-l-b-btn-icon"><i class="fa fa-weixin" aria-hidden="true"></i></span><span
+                            class="p-l-b-btn-name">微信</span></a></div>
+                </div><!-- 左侧导航底部社交按钮end --></div>
+        </div>
     </div>
     <div class="p-right-box">
         <div class="p-header-box box-shadow">
@@ -86,30 +96,33 @@
                 </form>
             </div>
             <a class="phone-title pjax" href="/"><i class="fa fa-snowflake-o"></i><span
-                    class="p-left-logo-box-text-name">Perfree</span></a>
+                    class="p-left-logo-box-text-name">{{userInfo.nickname}}</span></a>
             <div class="p-header-box-right-box">
                 <div class="p-header-box-music-box">
                     <div id="skPlayer"></div>
                 </div>
-                <div class="p-header-box-login-box"><a class="p-header-box-login-box-login"
-                                                       href="login.html">登录</a><span
-                        style="float: left; line-height: 50px;">|</span><a class="p-header-box-login-box-register"
-                                                                           href="register.html">注册</a></div>
+                <div v-if="flag" class="p-header-box-login-box"><a class="p-header-box-login-box-login"
+                                                                   href="login.html">登录</a>
+                    <span v-if="flag" style="float: left; line-height: 50px;">|</span><a v-if="flag"
+                                                                                         class="p-header-box-login-box-register"
+                                                                                         href="register.html">注册</a>
+                </div>
                 <a id="phoneSetting" style="display: none;"><i class="layui-icon"></i></a></div>
             <div class="p-phone-top-nav box-shadow">
                 <form id="search"><input type="text" placeholder="请输入搜索内容" name="keyword" required/>
                     <button type="submit"><i class="layui-icon"></i></button>
                 </form>
-                <div class="p-phone-top-nav-login-box">
-                    <div class="no-login layui-clear"><a class="login-btn" href="/user/login">登录</a><a
-                            class="register-btn" href="/user/register">注册</a></div>
+                <div v-if="flag" class="p-phone-top-nav-login-box">
+                    <div class="no-login layui-clear"><a class="login-btn" href="login.html">登录</a><a
+                            class="register-btn" href="register.html">注册</a></div>
                 </div>
             </div>
         </div>
         <div class="p-container-box"><!--文章列表Start-->
             <div class="p-content-box2" style="background-color:white;">
                 <div class="p-content-box-lwlhitokoto2">
-                    <div class="p-content-box-lwlhitokoto"><h3>Zeit丶浅白<span id="yiyan">ss</span></h3></div>
+                    <div class="p-content-box-lwlhitokoto"><h3>{{userInfo.nickname}}<span id="yiyan">ss</span></h3>
+                    </div>
                     <iframe src="index1.html" style="width: 100%; height: 800px;" frameborder="0"></iframe>
                 </div>
             </div>
@@ -118,7 +131,7 @@
                     <div class="p-right-card-body">
                         <ul>
                             <li class="p-hot-article-box"><a href="/article/9" class="pjax"><img
-                                    src="static/images/1.png" alt="" class=""/>
+                                    src="" alt="" class=""/>
                                 <div class="p-hot-article-right-box"><h2>springboot</h2></div>
                             </a></li>
                         </ul>
@@ -128,7 +141,7 @@
                     <div class="p-right-card-body">
                         <ul>
                             <li class="p-hot-article-box"><a href="/article/9" class="pjax"><img
-                                    src="static/images/1.png" alt="" class=""/>
+                                    src="" alt="" class=""/>
                                 <div class="p-hot-article-right-box"><h2>Perfree-Simple-Pro-致更好的你</h2><span><i
                                         class="fa fa-eye" aria-hidden="true"></i>2908</span></div>
                             </a></li>
@@ -154,7 +167,7 @@
                 <div id="toxBox"></div>
             </div>
             <div class="p-footer-box">
-                <div class="p-footer-box-left">© 2019 Perfree版权所有 豫ICP备18035337号</div>
+                <div class="p-footer-box-left">© 2020 Zeit丶浅白版权所有 豫ICP备xxxxxxxx号</div>
                 <div class="p-footer-box-right"></div>
             </div>
         </div>
@@ -168,8 +181,6 @@
 <script type="text/javascript" src="static/plugins/skplayer/skPlayer.js"></script>
 <script type="text/javascript" src="static/js/main.min.js"></script>
 <script type="text/javascript" src="static/plugins/clipboard/clipboard.min.js"></script>
-<script type="text/javascript" src="static/plugins/jquery.tocify/jquery-ui-1.9.1.custom.min.js"></script>
-<script type="text/javascript" src="static/plugins/jquery.tocify/jquery.tocify.js"></script>
 <script src="static/js/index.js"></script>
 <div class="loadJs"></div>
 <script> function setPageSrc(pageSrc) {
@@ -178,21 +189,58 @@
 }</script>
 <script src="static/js/vue.js"></script>
 <script src="static/plugins/node_modules/axios/dist/axios.js"></script>
-<script> new Vue({
-    el: ".p-right-tag-cloud", data: {tag: "",}, mounted() {
-        const url = "http://localhost:8081/usertag/selectTagByUid";
-        axios.get(url, {
-            params: {
-                uid: 1
+<script src="static/plugins/node_modules/mavon-editor/dist/mavon-editor.js"></script>
+<script>
+    new Vue({
+        el: "#userInfo",
+        data: {
+            userInfo: ""
+        },
+        mounted() {
+            let uid;
+            if (localStorage.getItem("uid") !== null) {
+                uid = parseInt(localStorage.getItem("uid"));
+            } else {
+                uid = 1;
             }
-        }).then((response) => {
-            const result = response.data;
-            this.tag = result;
-        }).catch((error) => {
-            alert("失败");
-        });
-    },
-});
+            const url = "http://localhost:8081/user/searchUserInfo";
+            axios.get(url, {
+                params: {
+                    uid: uid
+                }
+            }).then((response) => {
+                const result = response.data;
+                if (result.data.uid !== null) {
+                    this.userInfo = result.data;
+                } else {
+                    layer.msg("不存在的用户！")
+                }
+            }).catch((error) => {
+                layer.msg("获取用户数据失败！")
+            });
+        },
+    });
+    new Vue({
+        el: ".p-right-tag-cloud", data: {tag: "",}, mounted() {
+            let uid;
+            if (localStorage.getItem("uid") !== null) {
+                uid = parseInt(localStorage.getItem("uid"));
+            } else {
+                uid = 1;
+            }
+            const url = "http://localhost:8081/usertag/selectTagByUid";
+            axios.get(url, {
+                params: {
+                    uid: uid
+                }
+            }).then((response) => {
+                const result = response.data;
+                this.tag = result;
+            }).catch((error) => {
+                layer.msg("获取文章数据失败！")
+            });
+        },
+    });
 </script>
 </body>
 </html>

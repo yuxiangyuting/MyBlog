@@ -19,7 +19,7 @@ import java.util.List;
 public class UsertagServiceImpl extends ServiceImpl<UsertagDao, Usertag> implements UsertagService {
 
     @Override
-    public List<UsertagVo> selectTagByUid(Integer uid) {
+    public List<UsertagVo> selectTagByUid(long uid) {
         return getBaseMapper().selectTagsByUid(uid);
     }
 }

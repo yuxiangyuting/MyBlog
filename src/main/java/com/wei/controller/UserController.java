@@ -2,13 +2,12 @@ package com.wei.controller;
 
 
 import com.baomidou.mybatisplus.extension.api.ApiController;
-import com.wei.entity.Tag;
-import com.wei.entity.User;
+import com.baomidou.mybatisplus.extension.api.R;
+import com.wei.entity.vo.UserVo;
 import com.wei.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * (User)表控制层
@@ -35,8 +34,8 @@ public class UserController extends ApiController {
      * @return 用户信息
      */
     @PostMapping("login")
-    public User login(String username, String password) {
-        return this.userService.login(username, password);
+    public R login(String username, String password) {
+        return success(this.userService.login(username, password));
     }
 
     /**
@@ -54,12 +53,25 @@ public class UserController extends ApiController {
     /**
      * 通过用户名查询用户信息
      *
+     * @param nickname 用户昵称
+     * @return 用户信息
+     */
+    @GetMapping("searchUserByNickname")
+    public UserVo searchUserByNickname(String nickname) {
+        return userService.searchUserByNickname(nickname);
+    }
+
+    /**
+     * 通过用户名查询用户信息
+     *
      * @param uid 用户名
      * @return 用户信息
      */
-    @PostMapping("searchUserByUid")
-    public User searchUserByUid(Integer uid) {
-        return userService.searchUserByUid(uid);
+    @GetMapping("searchUserInfo")
+    public R searchUserInfo(Integer uid) {
+        if (uid == null) {
+            uid = 1;
+        }
+        return success(this.userService.searchUserInfo(uid));
     }
-
 }

@@ -3,6 +3,7 @@ package com.wei.controller;
 
 import com.baomidou.mybatisplus.extension.api.ApiController;
 import com.wei.entity.Article;
+import com.wei.entity.vo.ArticleVo;
 import com.wei.service.ArticleService;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,27 +26,37 @@ public class ArticleController extends ApiController {
     @Resource
     private ArticleService articleService;
 
-    /**
-     * 查询所有文章内容 根据时间排序
-     * @return 所有文章
-     */
-    @GetMapping
-    public List<Article> findAll(){
-        return articleService.findAll();
-    }
-
     @RequestMapping("selectByArtId")
-    public Article selectByArtId(Integer artId) {
+    public ArticleVo selectByArtId(Integer artId) {
+        if (artId == null) {
+            artId = 1;
+        }
         return articleService.selectByArtId(artId);
     }
 
     @GetMapping("selectTopArticleByUid")
-    public List<Article> selectTopArticleByUid(Integer uid){
+    public List<Article> selectTopArticleByUid(Integer uid) {
+        if (uid == null) {
+            return findAllTopArticle();
+        }
         return articleService.selectTopArticleByUid(uid);
     }
 
     @GetMapping("selectNoTopArticleByUid")
-    public List<Article> selectNoTopArticleByUid(Integer uid){
+    public List<Article> selectNoTopArticleByUid(Integer uid) {
+        if (uid == null) {
+           return findAllNoTopArticle();
+        }
         return articleService.selectNoTopArticleByUid(uid);
+    }
+
+    @GetMapping("findAllTopArticle")
+    public List<Article> findAllTopArticle() {
+        return articleService.findAllTopArticle();
+    }
+
+    @GetMapping("findAllNoTopArticle")
+    public List<Article> findAllNoTopArticle() {
+        return articleService.findAllNoTopArticle();
     }
 }

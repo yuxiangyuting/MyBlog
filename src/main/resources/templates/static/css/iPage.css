@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+
+#vue-dingyi-paging ul {
+    list-style: none;
+    margin-top: 10px;
+    text-align: center;
+}
+
+#vue-dingyi-paging ul li,
+.pageLink {
+    display: inline-block;
+    width: 50px;
+    height: 40px;
+    background: white;
+    color: black;
+    border-radius: 3px;
+    text-align: center;
+    text-decoration: none;
+    line-height: 40px;
+}
+
+#vue-dingyi-paging ul li .pageLink:hover {
+    background: #2cd4ff;
+    color: #FFFFFF;
+}
+
+#vue-dingyi-paging ul li .curPage {
+    background: #32cfff;
+    color: #FFFFFF;
+}

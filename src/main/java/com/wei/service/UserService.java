@@ -1,10 +1,8 @@
 package com.wei.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.wei.entity.Tag;
 import com.wei.entity.User;
-
-import java.util.List;
+import com.wei.entity.vo.UserVo;
 
 /**
  * (User)表服务接口
@@ -16,6 +14,7 @@ public interface UserService extends IService<User> {
 
     /**
      * 登录方法
+     *
      * @param username 用户名
      * @param password 密码
      * @return
@@ -24,6 +23,7 @@ public interface UserService extends IService<User> {
 
     /**
      * 注册
+     *
      * @param username 用户名
      * @param password 密码
      * @return
@@ -32,9 +32,18 @@ public interface UserService extends IService<User> {
 
     /**
      * 通过用户名查询用户信息
+     *
+     * @param username 用户名
+     * @return 用户信息
+     */
+    UserVo searchUserByNickname(String username);
+
+    /**
+     * 通过用id查询用户信息
+     *
      * @param uid 用户id
      * @return 用户信息
      */
-    User searchUserByUid(Integer uid);
+    UserVo searchUserInfo(long uid);
 
 }

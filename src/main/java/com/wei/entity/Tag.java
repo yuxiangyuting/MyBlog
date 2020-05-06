@@ -23,7 +23,7 @@ public class Tag extends Model<Tag> {
     /**
     *标签id
     */
-    private Integer tagid;
+    private long tagid;
     /**
     *标签名
     */

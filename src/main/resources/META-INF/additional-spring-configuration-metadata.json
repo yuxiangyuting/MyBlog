@@ -1,0 +1,28 @@
+{
+  "properties": [
+    {
+      "name": "upload.picture.path",
+      "type": "java.lang.String",
+      "description": "Description for upload.picture.path."
+    },
+    {
+      "name": "application.profile",
+      "type": "java.lang.String",
+      "description": "Description for application.profile."
+    },
+    {
+      "name": "application.version",
+      "type": "java.lang.String",
+      "description": "Description for application.version."
+    },
+    {
+      "name": "spring.datasource.druid.initial-size",
+      "type": "java.lang.String",
+      "description": "Description for spring.datasource.druid.initial-size."
+    },
+    {
+      "name": " upload.picture.path",
+      "type": "java.lang.String",
+      "description": "Description for upload.picture.path."
+    }
+  ] }
